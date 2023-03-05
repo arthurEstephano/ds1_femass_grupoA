@@ -10,5 +10,5 @@ Repositório referente a construção de um sistema para a disciplina de DS1 da 
   3. JDK 11 (pode baixar na Oracle)
 
 ## Configuração do Banco de Dados:
-  1. Caso queira utilizar usas próprias configurações para testar a aplicação, modifique o arquivo resumo_cientifico\src\main\resources
+  1. Caso queira utilizar usas próprias configurações para testar a aplicação, modifique o arquivo resumo_cientifico\src\main\resources\application
   2. Caso queria manter as configurações normais, crie um banco de dados no pgAdmin4 com o nome bdprojeto e senha admin (mantendo configs padrão de instalação)
