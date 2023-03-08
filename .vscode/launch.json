@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ResumoCientificoApplication<resumo_cientifico>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ds1.grupo1.resumo_cientifico.ResumoCientificoApplication",
+            "projectName": "resumo_cientifico",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
