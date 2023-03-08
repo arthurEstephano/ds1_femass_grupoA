@@ -1,0 +1,538 @@
+openapi: 3.0.0
+info:
+  title: API Instituto
+  description: |-
+    API de informações de instituto. Faz parte das APIs básicas para o sistema de currículos lattes desenvolvido na disciplina de Desenvolvimento de Sistemas 1 da FeMass pelo grupo A em 2023.1
+    Não contém dados sensíveis ou de identificação.
+    API de dados abertos.
+    Para mais informações entrar na URL de contato.
+  version: 1.0.0
+  contact:
+    url: "https://github.com/arthurEstephano/ds1_femass_grupoA"
+servers:
+  - url: "https://api.grupoa.com.br/institute"
+    description: Servidor de Produção
+  - url: "https://api.grupoa.com.br/institute"
+    description: Servidor de Homologação
+tags:
+  - name: "institute"
+paths:
+  /list:
+    get:
+      tags:
+        - institute
+      summary: Obtém a lista de institutos
+      description: "Obtém a lista de institutos"
+      operationId: "institutesList"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+      responses:
+        "200":
+          description: Dados dos institutos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+        "204":
+          $ref: "#/components/responses/NoContent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Dados dos institutos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+  /name/{nome}:
+    get:
+      tags:
+        - institute
+      summary: Obtém a lista de institutos
+      description: "Obtém a lista de institutos"
+      operationId: "institutesListByName"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/nome"
+      responses:
+        "200":
+          description: Dados dos institutos filtrados por um nome especificado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+        "204":
+          $ref: "#/components/responses/NoContent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Dados dos institutos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+  /acronym/{acronimo}:
+    get:
+      tags:
+        - institute
+      summary: Obtém a lista de institutos
+      description: "Obtém a lista de institutos"
+      operationId: "institutesListByAcronym"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/acronimo"
+      responses:
+        "200":
+          description: Dados dos institutos filtrados por um acronimo especificado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+        "204":
+          $ref: "#/components/responses/NoContent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Dados dos institutos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+  /name-acronym/{busca}:
+    get:
+      tags:
+        - institute
+      summary: Obtém a lista de institutos
+      description: "Obtém a lista de institutos"
+      operationId: "institutesListByNameOrAcronym"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/busca"
+      responses:
+        "200":
+          description: Dados dos institutos filtrados por um nome ou acronimo especificado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+        "204":
+          $ref: "#/components/responses/NoContent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Dados dos institutos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+  /:
+    post:
+      tags:
+        - institute
+      summary: Cria um instituto
+      description: "Cria um instituto"
+      operationId: "instituteCreate"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/busca"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateInstitute"
+      responses:
+        "200":
+          description: Instituto criado.
+        "204":
+          $ref: "#/components/responses/NoContent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Instituto criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/NoContent"
+  /{id}:
+    delete:
+      tags:
+        - institute
+      summary: Deleta um instituto
+      description: "Deleta um instituto especificado"
+      operationId: "instituteDelete"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/id"
+      responses:
+        "200":
+          description: Instituto deletado.
+        "204":
+          $ref: "#/components/responses/NoContent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Instituto deletado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/NoContent"
+components:
+  schemas:
+    ResponseInstituteList:
+      type: array
+      items:
+        required:
+          - id
+          - nome
+          - acronimo
+        properties:
+          id:
+            description: Id do instituto.
+            type: number
+            maxLength: 99999
+            example: 1
+          nome:
+            description: Nome do instituto.
+            type: string
+            maxLength: 100
+            example: Instituto de Matemática
+          acronimo:
+            description: Acronimo do instituto
+            type: number
+            maxLength: 100
+            example: XPTO
+          links:
+            $ref: "#/components/schemas/Links"
+          meta:
+            $ref: "#/components/schemas/Meta"
+    CreateInstitute:
+      type: object
+      required:
+        - nome
+        - acronimo
+      properties:
+        nome:
+          description: Nome do instituto.
+          type: string
+          maxLength: 100
+          example: Instituto de Matemática
+        acronimo:
+          description: Acronimo do instituto
+          type: number
+          maxLength: 100
+          example: XPTO
+    Links:
+      type: object
+      properties:
+        self:
+          type: string
+          description: URL da página atualmente requisitada
+          example: "https://api.grupoa.com.br/institute"
+        first:
+          type: string
+          description: URL da primeira página de registros
+          example: "https://api.grupoa.com.br/institute"
+        prev:
+          type: string
+          description: URL da página anterior de registros
+          example: "https://api.grupoa.com.br/institute"
+        next:
+          type: string
+          description: URL da próxima página de registros
+          example: "https://api.grupoa.com.br/institute"
+        last:
+          type: string
+          description: URL da última página de registros
+          example: "https://api.grupoa.com.br/institute"
+    Meta:
+      type: object
+      properties:
+        totalRecords:
+          type: integer
+          description: Total de registros encontrados
+          example: 10
+        totalPages:
+          type: integer
+          description: Total de páginas para os registros encontrados
+          example: 1
+      required:
+        - totalRecords
+        - totalPages
+    ResponseError:
+      type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          minItems: 1
+          maxItems: 13
+          items:
+            type: object
+            required:
+              - code
+              - title
+              - detail
+              - requestDateTime
+            properties:
+              code:
+                description: Código de erro específico do endpoint
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              title:
+                description: Título legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 255
+              detail:
+                description: Descrição legível por humanos deste erro específico
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 2048
+              requestDateTime:
+                description: "Data e hora da consulta, conforme especificação RFC-3339, formato UTC."
+                type: string
+                pattern: '[\w\W\s]*'
+                maxLength: 2048
+                format: date-time
+                example: "2021-08-20T08:30:00Z"
+            additionalProperties: false
+        meta:
+          $ref: "#/components/schemas/Meta"
+      additionalProperties: false
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Número da página que está sendo requisitada (o valor da primeira página é 1).
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    pageSize:
+      name: page-size
+      in: query
+      description: Quantidade total de registros por páginas.
+      schema:
+        type: integer
+        default: 10
+        minimum: 1
+    nome:
+      name: nome
+      in: path
+      description: Nome do instituto
+      required: true
+      schema:
+        type: string
+    acronimo:
+      name: acronimo
+      in: path
+      description: Acronimo do instituto
+      required: true
+      schema:
+        type: string
+    busca:
+      name: busca
+      in: path
+      description: Nome ou acronimo do instituto
+      required: true
+      schema:
+        type: string
+    id:
+      name: id
+      in: path
+      description: Id do instituto
+      required: true
+      schema:
+        type: number
+    cache-Control:
+      name: cache-control
+      in: header
+      description: Controle de cache para evitar que informações confidenciais sejam armazenadas em cache.
+      required: true
+      schema:
+        type: string
+        pattern: '[\w\W\s]*'
+    content-Type:
+      name: content-Type
+      in: header
+      description: Especificar o tipo de conteúdo da resposta.
+      schema:
+        type: string
+        pattern: '[\w\W\s]*'
+
+  responses:
+    UnprocessableEntity:
+      description: "O servidor entende o tipo de conteúdo da entidade da requisição, e a sintaxe da requisição esta correta, mas não foi possível processar as instruções presente."
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    NoContent:
+      description: "O recurso solicitado não existe ou não foi localizado."
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    BadRequest:
+      description: "A requisição foi malformada, omitindo atributos obrigatórios, seja no payload ou através de atributos na URL."
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    Forbidden:
+      description: O token tem escopo incorreto ou uma política de segurança foi violada
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    InternalServerError:
+      description: Ocorreu um erro no gateway da API ou no microsserviço
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    MethodNotAllowed:
+      description: O consumidor tentou acessar o recurso com um método não suportado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    NotAcceptable:
+      description: A solicitação continha um cabeçalho Accept diferente dos tipos de mídia permitidos ou um conjunto de caracteres diferente de UTF-8
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    NotFound:
+      description: O recurso solicitado não existe ou não foi implementado
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    TooManyRequests:
+      description: "A operação foi recusada, pois muitas solicitações foram feitas dentro de um determinado período ou o limite global de requisições concorrentes foi atingido"
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
+    Unauthorized:
+      description: Cabeçalho de autenticação ausente/inválido ou token inválido
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: "#/components/schemas/ResponseError"
