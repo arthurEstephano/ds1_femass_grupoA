@@ -1,0 +1,16 @@
+<app-instituto-search
+  (search)="serchFunction($event)"
+></app-instituto-search>
+<div class="mainPage">
+  <app-instituto-list
+    [institutoList]="institutoListfiltered"
+    (openModal)="openModal = true"
+    (remove)="removeInstituto($event)"
+  ></app-instituto-list>
+</div>
+
+<app-instituto-modal
+  *ngIf="openModal"
+  (add)="addInstituto($event)"
+  (close)="openModal = false"
+></app-instituto-modal>

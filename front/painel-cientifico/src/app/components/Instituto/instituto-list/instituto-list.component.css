@@ -1,0 +1,52 @@
+.list{
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.listHead{
+  font-size: 600;
+}
+
+.listHead > .listCell{
+  background-color: #ccc;
+  margin-right: 5px;
+}
+
+.listRow{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.listBody > .listCell{
+  border-bottom: 1px solid #ccc;
+  margin-right: 5px;
+}
+
+.nomeCell{
+  width: 25vw;
+}
+
+.acronimoCell{
+  width: 10vw;
+}
+
+.excluirCell{
+  cursor: pointer;
+}
+
+.addButon{
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  /* bottom: 30px; */
+  right: 10px;
+  cursor: pointer;
+}

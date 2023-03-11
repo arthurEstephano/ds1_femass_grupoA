@@ -1,0 +1,21 @@
+.searchArea{
+  display: flex;
+  padding: 10px 5px;
+  border: 1px solid #ccc;
+  justify-content: space-around;
+}
+
+input[type="text"] {
+  border-bottom: 1px solid black;
+}
+
+select{
+  cursor: pointer;
+}
+
+button{
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #ccc;
+}
+
