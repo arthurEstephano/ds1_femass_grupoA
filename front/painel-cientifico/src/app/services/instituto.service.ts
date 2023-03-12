@@ -24,4 +24,24 @@ export class InstitutoService {
     const url = this.ENVIROMENT;
     return this.httpClient.post<IInstituto>(url, body);
   }
+
+  getInstitutoFiltrado(body, tipo:string): Observable<IInstituto[]>{
+    let tipos = {
+      todos:'name-acronym/',
+      nome:'name/',
+      acronimo:'acronym/',
+    }
+
+    console.log("tipos", tipos[tipo])
+    let url = this.ENVIROMENT + tipos[tipo] + body
+
+    return this.httpClient.get<IInstituto[]>(url);
+  }
+
+  deleteInstituto(id:string): Observable<IInstituto[]>{
+
+    let url = this.ENVIROMENT + id
+
+    return this.httpClient.get<IInstituto[]>(url);
+  }
 }

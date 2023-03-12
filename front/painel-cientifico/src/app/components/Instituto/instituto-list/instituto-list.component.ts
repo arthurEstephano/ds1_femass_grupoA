@@ -22,8 +22,8 @@ export class InstitutoListComponent implements OnInit {
     this.openModal.emit(true);
   }
 
-  deleteInstituto(acronimo:string){
-    this.remove.emit(acronimo);
+  deleteInstituto(id:string){
+    this.remove.emit(id);
   }
 
 }

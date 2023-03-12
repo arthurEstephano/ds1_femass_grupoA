@@ -1,20 +1,20 @@
 <div class="layout">
   <div class="menu">
-    <div class="menu-item">
+    <div class="menu-item" [ngClass]="{'selected': menusSelecionados.home}"  (click)="selecionar('home')">
       Home
     </div>
-    <div class="menu-item">
-      <a routerLink="/institutos" routerLinkActive="active" ariaCurrentWhenActive="page">Institutos</a>
+    <div class="menu-item" [ngClass]="{'selected': menusSelecionados.institutos}" (click)="selecionar('institutos')">
+      <a routerLink="/institutos" routerLinkActive="active">Institutos</a>
     </div>
-    <div class="menu-item">
+    <div class="menu-item" [ngClass]="{'selected': menusSelecionados.pesquisador}" (click)="selecionar('pesquisador')">
       Pesquisador
     </div>
-    <div class="menu-item">
+    <div class="menu-item" [ngClass]="{'selected': menusSelecionados.producao}" (click)="selecionar('producao')">
       Produção
     </div>
   </div>
   <div class="main-area-layout">
-    <div class="header">header</div>
+    <!-- <div class="header">header</div> -->
     <div class="main-area">
       <router-outlet></router-outlet>
     </div>

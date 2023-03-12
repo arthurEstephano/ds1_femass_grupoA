@@ -1,5 +1,5 @@
 
-<h4 class="title">Institutos:</h4>
+<h4 class="title">INSTITUTOS</h4>
 <div class="list">
    <div class="listHead listRow">
     <div class="listCell nomeCell">Nome</div>
@@ -8,7 +8,9 @@
    <div class="listRow listBody" *ngFor="let list of institutoList">
     <div class="listCell nomeCell">{{list.nome.toUpperCase()}}</div>
     <div class="listCell acronimoCell">{{list.acronimo.toUpperCase()}}</div>
-    <div class="listCell excluirCell" (click)="deleteInstituto(list.nome)">excluir</div>
+    <div class="listCell excluirCell" (click)="deleteInstituto(list.id)">
+      <img src="../../../../assets/img/delete.png" alt="" srcset="">
+    </div>
    </div>
 </div>
 

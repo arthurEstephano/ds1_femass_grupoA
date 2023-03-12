@@ -27,6 +27,8 @@ const MockInstitutos: IInstituto[] =[
 export class InstitutoIndexComponent implements OnInit {
   public institutoList: IInstituto[] = MockInstitutos;
   public institutoListfiltered: IInstituto[] = MockInstitutos;
+  // public institutoList: IInstituto[] = [];
+  // public institutoListfiltered: IInstituto[] = [];
   public openModal: boolean = false;
 
   constructor(private service: InstitutoService) { }
@@ -49,25 +51,38 @@ export class InstitutoIndexComponent implements OnInit {
 
   serchFunction(searchTerms){
     console.log('searchTerms', searchTerms)
-
-    if(searchTerms.campo.toUpperCase() === 'TODOS'){
-      this.institutoListfiltered = this.institutoList.filter(instituto => {
-        return instituto.nome.toUpperCase().includes(searchTerms.termo.toUpperCase()) || instituto.acronimo.toUpperCase().includes(searchTerms.termo.toUpperCase())
-      })
-
-    }else if(searchTerms.campo.toUpperCase() === 'NOME'){
-      this.institutoListfiltered = this.institutoList.filter(instituto => {
-        return instituto.nome.toUpperCase().includes(searchTerms.termo.toUpperCase())
-      })
-
-    }else if(searchTerms.campo.toUpperCase() === 'ACRONIMO'){
-      this.institutoListfiltered = this.institutoList.filter(instituto => {
-        return instituto.acronimo.toUpperCase().includes(searchTerms.termo.toUpperCase())
-      })
-
+    if(searchTerms.termo === ""){
+      this.getInstitutoList()
     }else{
-      alert('termo não encontrado');
+      this.service.getInstitutoFiltrado(searchTerms.termo, searchTerms.campo.toLowerCase()).subscribe(
+        res => {
+          console.log('res', res)
+          this.institutoListfiltered = res
+        },
+        err => {
+          console.log(err)
+        }
+      )
     }
+
+    // if(searchTerms.campo.toUpperCase() === 'TODOS'){
+    //   this.institutoListfiltered = this.institutoList.filter(instituto => {
+    //     return instituto.nome.toUpperCase().includes(searchTerms.termo.toUpperCase()) || instituto.acronimo.toUpperCase().includes(searchTerms.termo.toUpperCase())
+    //   })
+
+    // }else if(searchTerms.campo.toUpperCase() === 'NOME'){
+    //   this.institutoListfiltered = this.institutoList.filter(instituto => {
+    //     return instituto.nome.toUpperCase().includes(searchTerms.termo.toUpperCase())
+    //   })
+
+    // }else if(searchTerms.campo.toUpperCase() === 'ACRONIMO'){
+    //   this.institutoListfiltered = this.institutoList.filter(instituto => {
+    //     return instituto.acronimo.toUpperCase().includes(searchTerms.termo.toUpperCase())
+    //   })
+
+    // }else{
+    //   alert('termo não encontrado');
+    // }
 
   }
 
@@ -76,7 +91,6 @@ export class InstitutoIndexComponent implements OnInit {
     // this.institutoListfiltered.push(instituto);
     this.openCloseModal();
     this.service.addInstitutos(instituto).subscribe(res => {
-      console.log("res", res);
       this.getInstitutoList();
     },
     err => {
@@ -85,10 +99,19 @@ export class InstitutoIndexComponent implements OnInit {
 
   }
 
-  removeInstituto(nome:string){
-    this.institutoListfiltered = this.institutoList.filter(instituto => {
-      return !instituto.nome.toUpperCase().includes(nome.toUpperCase())
-    })
+  removeInstituto(id:string){
+    this.service.deleteInstituto(id).subscribe(
+      res => {
+        console.log('res')
+        this.getInstitutoList()
+      },
+      err => {
+        console.log("err", err)
+      }
+    )
+    // this.institutoListfiltered = this.institutoList.filter(instituto => {
+    //   return !instituto.nome.toUpperCase().includes(nome.toUpperCase())
+    // })
   }
 
   openCloseModal(){
