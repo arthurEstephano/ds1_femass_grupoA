@@ -1,0 +1,50 @@
+### Post - Criação do Recurso Instituto, passando como body nome e acronimo
+POST http://localhost:8080/institute/ HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Yago Bom dia",
+    "acronimo": "YAGI"
+}
+
+### Post - Criação do Recurso Instituto, passando como body nome e acronimo
+POST http://localhost:8080/institute/ HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Yago Boa noite",
+    "acronimo": "YAGI"
+}
+
+### Post - Criação do Recurso Instituto, passando como body nome e acronimo
+POST http://localhost:8080/institute/ HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Yago Boa tarde",
+    "acronimo": "YAGO"
+}
+
+### Post - Criação do Recurso Instituto, passando como body nome e acronimo - ../institute/
+POST http://localhost:8080/institute/ HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Eduardo Bom dia",
+    "acronimo": "ED"
+}
+
+### Get - Obtenção da lista completa de institutos - ../institute/list
+GET  http://localhost:8080/institute/list HTTP/1.1
+
+### DELETE - Delete de um instituto específico - ../institute/{id}
+GET  http://localhost:8080/institute/2 HTTP/1.1
+
+### Get - Obtenção de um acronimo que contem a palavra específica - ../institute/acronym/{acronimo}
+GET  http://localhost:8080/institute/acronym/ED HTTP/1.1
+
+### Get - Obtenção de um nome que contem a palavra específica - ../institute/name/{nome}
+GET  http://localhost:8080/institute/name/Yago HTTP/1.1
+
+### Get - Obtenção de um nome e ou acronimo que contem a palavra específica - ../institute/lista/{busca}
+GET  http://localhost:8080/institute/name-acronym/BOm HTTP/1.1
