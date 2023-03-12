@@ -7,6 +7,7 @@ import { InstitutoListComponent } from './components/Instituto/instituto-list/in
 import { InstitutoIndexComponent } from './components/Instituto/instituto-index/instituto-index.component';
 import { InstitutoSearchComponent } from './components/Instituto/instituto-search/instituto-search.component';
 import { InstitutoModalComponent } from './components/Instituto/instituto-modal/instituto-modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes =  [
   {
@@ -25,7 +26,7 @@ const appRoutes: Routes =  [
   ],
   imports: [
     BrowserModule,
-    // RouterModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

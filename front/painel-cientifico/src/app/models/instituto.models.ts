@@ -1,4 +1,5 @@
 export interface IInstituto {
     nome: string,
-    acronimo:string
+    acronimo:string,
+    id?:number
 }
