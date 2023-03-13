@@ -23,6 +23,9 @@ public class InstitutoController {
         this.institutoRepository = institutoRepository;
     }
 
+    /**
+     * Retorna uma lista dos Institutos.
+     */
     @GetMapping("/list")
     public List<InstitutoRs> getInstitutos() {
         List<Instituto> institutos = institutoRepository.findAll();
@@ -39,6 +42,10 @@ public class InstitutoController {
         return irs;
     }
 
+    /**
+     * Grava um novo Instituto no repositorio.
+     * @param institutoRs : 
+     */
     @PostMapping("/")
     public void gravar(@RequestBody InstitutoRs institutoRs){
         Instituto instituto = new Instituto ();
@@ -48,6 +55,10 @@ public class InstitutoController {
         institutoRepository.save(instituto);
     }
 
+    /**
+     * Deleta um Instituto com base no Id.
+     * @param id : id de um Instituto.
+     */
     @GetMapping("/{id}")
     public void deleteInstituto(@PathVariable("id") Long id) throws Exception {
         var i = institutoRepository.findById(id);
@@ -61,16 +72,28 @@ public class InstitutoController {
         
     }
 
+    /**
+     * Devolve um Instituto com base em seu nome.
+     * @param nome : nome de um Instituto.
+     */
     @GetMapping("/name/{nome}")
     public List<Instituto> getInstitutoByNome(@PathVariable("nome") String nome){
         return institutoRepository.findByNomeContaining(nome);
     }
 
+    /**
+     * Devolve um Instituto com base em seu acronimo.
+     * @param acronimo : acronimo de um Instituto.
+     */
     @GetMapping("/acronym/{acronimo}")
     public List<Instituto> getInstitutoByAcronimo(@PathVariable("acronimo") String acronimo){
         return institutoRepository.findByAcronimoContaining(acronimo);
     }
 
+    /**
+     * Realiza a busca de um Instituto utilizando de seu nome ou acronimo.
+     * @param busca : acronimo ou nome de um Instituto.
+     */
     @GetMapping("/name-acronym/{busca}")
     public List<Instituto> getInstitutoByNomeOrAcronimo(@PathVariable("busca") String busca){
         return institutoRepository.findByNomeIgnoreCaseContainingOrAcronimoIgnoreCaseContaining(busca, busca);

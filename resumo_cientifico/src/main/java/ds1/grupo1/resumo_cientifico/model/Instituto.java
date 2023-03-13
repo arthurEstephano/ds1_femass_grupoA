@@ -19,6 +19,10 @@ public class Instituto {
     @Column(nullable = false)
     private String acronimo;
 
+    /**
+     * Métodos "getters" e "setters" de Instituto.
+     */
+
     public Long getId() {
         return id;
     }
@@ -43,11 +47,17 @@ public class Instituto {
         this.acronimo = acronimo;
     }
 
+    /**
+     * Método de criação da String em formato: Instituto: "acronimo" - "nome".
+     */
     @Override
     public String toString() {
         return "Instituto: " + acronimo + " - " + nome;
     }
 
+    /**
+     * Método de criação de código Hash.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -56,6 +66,10 @@ public class Instituto {
         return result;
     }
 
+    /**
+     * Método de veríficação de igualdade.
+     * @param obj : Objeto para realizar comparação e verificação de igualdade.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

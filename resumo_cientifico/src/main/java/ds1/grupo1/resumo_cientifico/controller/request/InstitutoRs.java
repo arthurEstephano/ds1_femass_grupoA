@@ -6,6 +6,10 @@ public class InstitutoRs {
     private String acronimo;
 
 
+    /**
+     * Metodos "getters" e "setters" da classe InstitutoRs
+     */
+
     public Long getId() {
         return id;
     }

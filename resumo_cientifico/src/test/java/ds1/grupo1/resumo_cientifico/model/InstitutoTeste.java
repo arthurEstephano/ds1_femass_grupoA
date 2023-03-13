@@ -11,6 +11,7 @@ public class InstitutoTeste {
     String nome;
     String acronimo;
     
+    
     @BeforeEach
     void iniciar(){
         instituto = new Instituto();
@@ -18,6 +19,10 @@ public class InstitutoTeste {
         nome = "Eduardo";
         acronimo = "Ed";  
     }
+
+    /**
+     * Aqui são testados unitariamente os métodos da API de instituto
+     */
 
     @Test
     void idTeste(){
