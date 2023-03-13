@@ -63,12 +63,12 @@ public class InstitutoController {
 
     @GetMapping("/name/{nome}")
     public List<Instituto> getInstitutoByNome(@PathVariable("nome") String nome){
-        return institutoRepository.findByNomeContaining(nome);
+        return institutoRepository.findByNomeIgnoreCaseContaining(nome);
     }
 
     @GetMapping("/acronym/{acronimo}")
     public List<Instituto> getInstitutoByAcronimo(@PathVariable("acronimo") String acronimo){
-        return institutoRepository.findByAcronimoContaining(acronimo);
+        return institutoRepository.findByAcronimoIgnoreCaseContaining(acronimo);
     }
 
     @GetMapping("/name-acronym/{busca}")

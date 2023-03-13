@@ -9,8 +9,8 @@ import ds1.grupo1.resumo_cientifico.model.Instituto;
 
 @Repository
 public interface InstitutoRepository extends JpaRepository<Instituto, Long>{
-    List<Instituto> findByNomeContaining(String nome);
-    List<Instituto> findByAcronimoContaining(String acronimo);
+    List<Instituto> findByNomeIgnoreCaseContaining(String nome);
+    List<Instituto> findByAcronimoIgnoreCaseContaining(String acronimo);
     List<Instituto> findByNomeIgnoreCaseContainingOrAcronimoIgnoreCaseContaining(String nome, String acronimo);
     
 }
