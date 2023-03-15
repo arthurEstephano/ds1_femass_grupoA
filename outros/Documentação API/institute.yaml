@@ -66,8 +66,8 @@ paths:
     get:
       tags:
         - institute
-      summary: Obtém a lista de institutos
-      description: "Obtém a lista de institutos"
+      summary: Obtém a lista de institutos filtrados por um nome especificado.
+      description: "Obtém a lista de institutos filtrados por um nome especificado."
       operationId: "institutesListByName"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
@@ -112,8 +112,8 @@ paths:
     get:
       tags:
         - institute
-      summary: Obtém a lista de institutos
-      description: "Obtém a lista de institutos"
+      summary: Obtém a lista de institutos filtrados por um acronimo especificado.
+      description: "Obtém a lista de institutos filtrados por um acronimo especificado."
       operationId: "institutesListByAcronym"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
@@ -158,8 +158,8 @@ paths:
     get:
       tags:
         - institute
-      summary: Obtém a lista de institutos
-      description: "Obtém a lista de institutos"
+      summary: Obtém a lista de institutos por um nome ou acronimo especificado.
+      description: "Obtém a lista de institutos por um nome ou acronimo especificado."
       operationId: "institutesListByNameOrAcronym"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
@@ -219,8 +219,8 @@ paths:
             schema:
               $ref: "#/components/schemas/CreateInstitute"
       responses:
-        "200":
-          description: Instituto criado.
+        "201":
+          $ref: "#/components/responses/201InstituteCreated"
         "204":
           $ref: "#/components/responses/NoContent"
         "400":
@@ -246,7 +246,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/NoContent"
+                $ref: "#/components/responses/201InstituteCreated"
   /{id}:
     delete:
       tags:
@@ -261,10 +261,8 @@ paths:
         - $ref: "#/components/parameters/pageSize"
         - $ref: "#/components/parameters/id"
       responses:
-        "200":
-          description: Instituto deletado.
         "204":
-          $ref: "#/components/responses/NoContent"
+          $ref: "#/components/responses/204InstituteDeleted"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -288,7 +286,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/NoContent"
+                $ref: "#/components/responses/204InstituteDeleted"
 components:
   schemas:
     ResponseInstituteList:
@@ -536,3 +534,7 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: "#/components/schemas/ResponseError"
+    201InstituteCreated:
+      description: Instituto criado com sucesso.
+    204InstituteDeleted:
+      description: Instituto deletado com sucesso.
