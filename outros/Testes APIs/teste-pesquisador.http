@@ -1,0 +1,41 @@
+###
+POST http://localhost:8080/researcher/ HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "João Marcos",
+    "identificador_lattes": "0023809873085852",
+    "instituto": "Yago Boa noite"
+}
+
+###
+POST http://localhost:8080/researcher/ HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Yago Frossard",
+    "identificador_lattes": "0123809873085852",
+    "instituto": "Eduardo Bom dia"
+}
+
+###
+POST http://localhost:8080/researcher/ HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Yagi Vale dos Sem Luz",
+    "identificador_lattes": "0173809873085852",
+    "instituto": "Yago Bom dia"
+}
+
+### Get
+GET  http://localhost:8080/researcher/list HTTP/1.1
+
+### Get 
+GET  http://localhost:8080/researcher/name/Marcos HTTP/1.1
+
+### DELETE
+DELETE  http://localhost:8080/researcher/3 HTTP/1.1
+
+### Get 
+GET  http://localhost:8080/researcher/name/Y HTTP/1.1
