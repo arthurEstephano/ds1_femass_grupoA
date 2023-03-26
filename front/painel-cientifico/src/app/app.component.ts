@@ -1,4 +1,21 @@
 import { Component } from '@angular/core';
+import { IInstituto } from './models/instituto.models';
+
+
+const MockInstitutos: IInstituto[] =[
+  {
+    nome: "Unidade 1",
+    acronimo: 'XPTO'
+  },
+  {
+    nome: "Unidade 2",
+    acronimo: 'XPTOX'
+  },
+  {
+    nome: "Unidade 3",
+    acronimo: 'XPTON'
+  },
+]
 
 @Component({
   selector: 'app-root',
@@ -6,7 +23,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'painel-cientifico';
+  public  title = 'painel-cientifico';
 
   public menusSelecionados = {
     home: true,
@@ -20,9 +37,7 @@ export class AppComponent {
     this.menusSelecionados[key] = false
    }
 
-   console.log("key", menu)
 
    this.menusSelecionados[menu] = true
-   console.log(this.menusSelecionados)
   }
 }

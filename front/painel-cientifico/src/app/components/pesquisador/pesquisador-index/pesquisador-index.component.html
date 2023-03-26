@@ -1,0 +1,33 @@
+<app-filtro
+  [campos]="camposPesquisa"
+  (search)="serchFunction($event)"
+></app-filtro>
+<div class="mainPage">
+  <!-- <app-instituto-list
+    [institutoList]="institutoListfiltered"
+    (openModal)="openModal = true"
+    (remove)="removeInstituto($event)"
+  ></app-instituto-list> -->
+  <app-table-list
+  [tituloPagina]="'PESQUISADORES'"
+  [list]="pesquisadoresListfiltered"
+  (openModal)="openCloseModal()"
+  (remove)="abrirConfirmacao($event)"
+  >
+  </app-table-list>
+</div>
+
+<app-modal-confirmacao
+  *ngIf="openModalConfirmacao == true"
+  (close)="openModalConfirmacao = false"
+  (positivo)="acaoModalConfirmacao()"
+  [textoConfirmacao]="textoConfirmacao"
+>
+</app-modal-confirmacao>
+
+<app-pesquisador-modal-add
+  [institutos]="institutoList"
+  (close)="openCloseModal()"
+  (positivo)="confirmacaoModalAdd($event)"
+  *ngIf="openModal === true"
+></app-pesquisador-modal-add>

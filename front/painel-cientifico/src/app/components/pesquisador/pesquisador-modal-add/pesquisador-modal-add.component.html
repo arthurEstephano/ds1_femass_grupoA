@@ -1,0 +1,30 @@
+<div class="modalBackArea">
+  <div class="modal">
+    <!-- <span>Campo:</span> -->
+    <div class="areaPesquisa">
+      <input type="text" placeholder="Cod. Pesquisador" #codPesquisador >
+      <button (click)="pesquisar(codPesquisador.value)">Pesquisar</button>
+    </div>
+    <div class="naoEncontrado" *ngIf="pesquisadorNaoEncontrado">
+      <p>{{"Pesquisador Lattes: '" + codPesquisador.value + "' não encontrado"}}</p>
+    </div>
+    <div class="areaFiltro" *ngIf="xmlItems != null">
+      <p>{{xmlItems.nome}}</p>
+      <input type="text" placeholder="Pesquisar Instituto" #termText (keyup)="filtrar(termText.value)">
+      <div class="selectArea" #selectArea>
+        <select name="campo" id="campo" (change)="changeSelect($event)">
+          <option value="todos" selected disabled>{{itemSelecionado}}</option>
+          <option value="todos" >TODOS</option>
+          <option *ngFor="let item of institutosFiltrados" value="{{item.id}}">{{item.nome.toUpperCase()}}</option>
+          <!-- <option value="acronimo">Acrônimo</option> -->
+        </select>
+      </div>
+    </div>
+
+    <div class="buttonArea">
+      <button class="cancelar" (click)="closeModal()">NÃO</button>
+      <button (click)="confirmacao()">SIM</button>
+    </div>
+  </div>
+</div>
+

@@ -1,7 +1,8 @@
 const { XMLParser, XMLValidator } = require("fast-xml-parser")
-const fs = require("fs")
+// const fs = require("fs")
+const fs = require("file-system")
 
-function pegarInfoPesquisador(codigo){
+export function pegarInfoPesquisador(codigo){
 
     const path = `outros\\Curriculos_XML\\${codigo}.xml`
     let data

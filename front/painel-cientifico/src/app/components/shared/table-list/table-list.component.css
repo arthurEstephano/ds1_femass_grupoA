@@ -21,6 +21,7 @@
   background: #AEAEAE;
   border: 1px solid #AEAEAE;
   border-radius: 5px 0px 0px 0px;
+  text-transform: uppercase;
 }
 
 .listRow{
@@ -32,11 +33,12 @@
 .listBody > .listCell{
   border-bottom: 1px solid #ccc;
   margin-right: 5px;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
 }
 
 .nomeCell{
-  width: 45vw;
+  width: 20vw;
   padding: 10px;
 }
 

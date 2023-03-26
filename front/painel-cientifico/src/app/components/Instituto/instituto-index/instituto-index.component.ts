@@ -25,16 +25,17 @@ const MockInstitutos: IInstituto[] =[
   styleUrls: ['./instituto-index.component.css']
 })
 export class InstitutoIndexComponent implements OnInit {
-  public institutoList: IInstituto[] = MockInstitutos;
-  public institutoListfiltered: IInstituto[] = MockInstitutos;
-  // public institutoList: IInstituto[] = [];
-  // public institutoListfiltered: IInstituto[] = [];
+  // public institutoList: IInstituto[] = MockInstitutos;
+  // public institutoListfiltered: IInstituto[] = MockInstitutos;
+  public institutoList: IInstituto[] = [];
+  public institutoListfiltered: IInstituto[] = [];
   public openModal: boolean = false;
+  public camposPesquisa = ['Nome','Acrônimo']
 
   constructor(private service: InstitutoService) { }
 
   ngOnInit(): void {
-    this.institutoListfiltered = this.institutoList;
+    // this.institutoListfiltered = this.institutoList;
     this.getInstitutoList()
   }
 
@@ -50,7 +51,7 @@ export class InstitutoIndexComponent implements OnInit {
 
 
   serchFunction(searchTerms){
-    console.log('searchTerms', searchTerms)
+    // console.log('searchTerms', searchTerms)
     if(searchTerms.termo === ""){
       this.getInstitutoList()
     }else{

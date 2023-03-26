@@ -1,0 +1,20 @@
+
+<h4 class="title">{{tituloPagina}}</h4>
+<div class="list">
+   <div class="listHead listRow">
+    <div class="listCell nomeCell" *ngFor="let item of headers">{{item}}</div>
+   </div>
+   <div class="listRow listBody" *ngFor="let list of list">
+    <ng-container *ngFor="let item of list | keyvalue">
+
+      <div class="listCell nomeCell" *ngIf="item.key !== 'id'">{{list[item.key]}}</div>
+    </ng-container>
+    <div class="listCell excluirCell" (click)="delete(list)">
+      <img src="../../../../assets/img/delete.png" alt="" srcset="">
+    </div>
+   </div>
+</div>
+
+<div class="addButon" (click)="openModalAdd()">
+  +
+</div>

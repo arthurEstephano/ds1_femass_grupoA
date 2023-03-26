@@ -1,12 +1,24 @@
-<app-instituto-search
+<!-- <app-instituto-search
   (search)="serchFunction($event)"
-></app-instituto-search>
+  ></app-instituto-search> -->
+<app-filtro
+  [campos]="camposPesquisa"
+  (search)="serchFunction($event)"
+></app-filtro>
 <div class="mainPage">
-  <app-instituto-list
+  <!-- <app-instituto-list
     [institutoList]="institutoListfiltered"
     (openModal)="openModal = true"
     (remove)="removeInstituto($event)"
-  ></app-instituto-list>
+  ></app-instituto-list> -->
+  <app-table-list
+  [tituloPagina]="'INSTITUTOS'"
+  [list]="institutoListfiltered"
+  (openModal)="openModal = true"
+  (remove)="removeInstituto($event)"
+  *ngIf="institutoListfiltered.length !== 0"
+  >
+  </app-table-list>
 </div>
 
 <app-instituto-modal

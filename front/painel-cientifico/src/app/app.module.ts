@@ -8,11 +8,20 @@ import { InstitutoIndexComponent } from './components/Instituto/instituto-index/
 import { InstitutoSearchComponent } from './components/Instituto/instituto-search/instituto-search.component';
 import { InstitutoModalComponent } from './components/Instituto/instituto-modal/instituto-modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PesquisadorIndexComponent } from './components/pesquisador/pesquisador-index/pesquisador-index.component';
+import { FiltroComponent } from './components/shared/filtro/filtro.component';
+import { TableListComponent } from './components/shared/table-list/table-list.component';
+import { ModalConfirmacaoComponent } from './components/shared/modal-confirmacao/modal-confirmacao.component';
+import { PesquisadorModalAddComponent } from './components/pesquisador/pesquisador-modal-add/pesquisador-modal-add.component';
 
 const appRoutes: Routes =  [
   {
     path:'institutos',
     component:InstitutoIndexComponent
+  },
+  {
+    path:'pesquisador',
+    component:PesquisadorIndexComponent
   },
 ]
 
@@ -22,7 +31,12 @@ const appRoutes: Routes =  [
     InstitutoListComponent,
     InstitutoIndexComponent,
     InstitutoSearchComponent,
-    InstitutoModalComponent
+    InstitutoModalComponent,
+    PesquisadorIndexComponent,
+    FiltroComponent,
+    TableListComponent,
+    ModalConfirmacaoComponent,
+    PesquisadorModalAddComponent
   ],
   imports: [
     BrowserModule,
