@@ -2,6 +2,7 @@ package ds1.grupo1.resumo_cientifico.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,7 +60,7 @@ public class InstitutoController {
      * Deleta um Instituto com base no Id.
      * @param id : id de um Instituto.
      */
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void deleteInstituto(@PathVariable("id") Long id) throws Exception {
         var i = institutoRepository.findById(id);
 

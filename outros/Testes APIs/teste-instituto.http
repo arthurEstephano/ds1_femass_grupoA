@@ -38,7 +38,7 @@ content-type: application/json
 GET  http://localhost:8080/institute/list HTTP/1.1
 
 ### DELETE - Delete de um instituto específico - ../institute/{id}
-GET  http://localhost:8080/institute/2 HTTP/1.1
+DELETE   http://localhost:8080/institute/2 HTTP/1.1
 
 ### Get - Obtenção de um acronimo que contem a palavra específica - ../institute/acronym/{acronimo}
 GET  http://localhost:8080/institute/acronym/ANAFI HTTP/1.1
