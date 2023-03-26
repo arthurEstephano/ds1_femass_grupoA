@@ -3,8 +3,8 @@ POST http://localhost:8080/institute/ HTTP/1.1
 content-type: application/json
 
 {
-    "nome": "Yago Bom dia",
-    "acronimo": "YAGI"
+    "nome": "Ciência e Tecnologia",
+    "acronimo": "CITEC"
 }
 
 ### Post - Criação do Recurso Instituto, passando como body nome e acronimo
@@ -12,8 +12,8 @@ POST http://localhost:8080/institute/ HTTP/1.1
 content-type: application/json
 
 {
-    "nome": "Yago Boa noite",
-    "acronimo": "YAGI"
+    "nome": "Anatomia e Fisiologia",
+    "acronimo": "ANAFI"
 }
 
 ### Post - Criação do Recurso Instituto, passando como body nome e acronimo
@@ -21,8 +21,8 @@ POST http://localhost:8080/institute/ HTTP/1.1
 content-type: application/json
 
 {
-    "nome": "Yago Boa tarde",
-    "acronimo": "YAGO"
+    "nome": "Bioquímica",
+    "acronimo": "BIOQ"
 }
 
 ### Post - Criação do Recurso Instituto, passando como body nome e acronimo - ../institute/
@@ -30,8 +30,8 @@ POST http://localhost:8080/institute/ HTTP/1.1
 content-type: application/json
 
 {
-    "nome": "Eduardo Bom dia",
-    "acronimo": "ED"
+    "nome": "Línguas e Letras",
+    "acronimo": "LINLE"
 }
 
 ### Get - Obtenção da lista completa de institutos - ../institute/list
@@ -41,10 +41,10 @@ GET  http://localhost:8080/institute/list HTTP/1.1
 GET  http://localhost:8080/institute/2 HTTP/1.1
 
 ### Get - Obtenção de um acronimo que contem a palavra específica - ../institute/acronym/{acronimo}
-GET  http://localhost:8080/institute/acronym/ED HTTP/1.1
+GET  http://localhost:8080/institute/acronym/ANAFI HTTP/1.1
 
 ### Get - Obtenção de um nome que contem a palavra específica - ../institute/name/{nome}
-GET  http://localhost:8080/institute/name/Yago HTTP/1.1
+GET  http://localhost:8080/institute/name/Anatomia HTTP/1.1
 
 ### Get - Obtenção de um nome e ou acronimo que contem a palavra específica - ../institute/lista/{busca}
-GET  http://localhost:8080/institute/name-acronym/BOm HTTP/1.1
+GET  http://localhost:8080/institute/name-acronym/ana HTTP/1.1

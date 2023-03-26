@@ -46,8 +46,20 @@ public class PesquisadorController {
     }
 
     @GetMapping("/name/{nome}")
-    public List<Pesquisador> getPesquisadorByNome(@PathVariable("nome") String nome){
-        return pesquisadorRepository.findByNomeIgnoreCaseContaining(nome);
+    public List<PesquisadorRs> getPesquisadorByNome(@PathVariable("nome") String nome){
+        List<Pesquisador> pesquisadores = pesquisadorRepository.findByNomeIgnoreCaseContaining(nome);
+
+        List<PesquisadorRs> irs = new ArrayList<PesquisadorRs>();
+        for (Pesquisador pesquisador: pesquisadores){
+            PesquisadorRs p = new PesquisadorRs();
+            p.setInstituto(pesquisador.getInstituto().getNome());
+            p.setIdentificador_lattes(pesquisador.getIdentificador_lattes());
+            p.setNome(pesquisador.getNome());
+            p.setId(pesquisador.getId());
+            irs.add(p);
+        }
+
+        return irs;
     }
 
     @PostMapping("/")
