@@ -16,6 +16,10 @@ public class Pesquisador {
 
     @ManyToOne
     private Instituto instituto;
+
+    /**
+     * Métodos "getters" e "setters" de Pesquisador.
+     */
     
     public Long getId() {
         return id;
@@ -35,10 +39,19 @@ public class Pesquisador {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    /**
+     * Método de criação da String em formato: Pesquisador [id="id", identificador_lattes="identificador_lattes", nome="nome"]
+     */
+
     @Override
     public String toString() {
         return "Pesquisador [id=" + id + ", identificador_lattes=" + identificador_lattes + ", nome=" + nome + "]";
     }
+
+    /**
+     * Método de criação de código Hash.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -48,6 +61,11 @@ public class Pesquisador {
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         return result;
     }
+
+    /**
+     * Método de veríficação de igualdade.
+     * @param obj : Objeto para realizar comparação e verificação de igualdade.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -75,13 +93,14 @@ public class Pesquisador {
         return true;
     }
     
+    /**
+     * Métodos "get" e "set" de Instituto.
+     */
+
     public Instituto getInstituto() {
         return instituto;
     }
     public void setInstituto(Instituto instituto) {
         this.instituto = instituto;
     }
-
-    
-    
 }

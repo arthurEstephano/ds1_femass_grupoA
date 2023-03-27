@@ -28,6 +28,9 @@ public class PesquisadorController {
         this.institutoRepository = institutoRepository;
     }
 
+    /**
+     * Retorna uma lista dos Pesquisadores
+     */
     @GetMapping("/list")
     public List<PesquisadorRs> getPesquisadores() {
         List<Pesquisador> pesquisadores = pesquisadorRepository.findAll();
@@ -45,6 +48,10 @@ public class PesquisadorController {
         return irs;
     }
 
+    /**
+     * Devolve um Pesquisador com base em seu nome.
+     * @param nome : nome de um Pesquisador.
+     */
     @GetMapping("/name/{nome}")
     public List<PesquisadorRs> getPesquisadorByNome(@PathVariable("nome") String nome){
         List<Pesquisador> pesquisadores = pesquisadorRepository.findByNomeIgnoreCaseContaining(nome);
@@ -62,6 +69,11 @@ public class PesquisadorController {
         return irs;
     }
 
+    /**
+     * Grava um novo Pesquisador no Repositorio. 
+     * @param pesquisadorRs
+     * @throws Exception
+     */
     @PostMapping("/")
     public void gravar(@RequestBody PesquisadorRs pesquisadorRs) throws Exception{
         Pesquisador pesquisador = new Pesquisador ();
@@ -85,8 +97,12 @@ public class PesquisadorController {
         pesquisadorRepository.save(pesquisador);
     }
 
+    /**
+     * Deleta um Pesquisador com base no Id.
+     * @param id : id de um Pesquisador.
+     */
     @DeleteMapping("/{id}")
-    public void deleteInstituto(@PathVariable("id") Long id) throws Exception {
+    public void deletePesquisador(@PathVariable("id") Long id) throws Exception {
         var p = pesquisadorRepository.findById(id);
 
         if (p.isPresent()){
