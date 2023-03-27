@@ -41,7 +41,7 @@ export class InstitutoService {
 
     let url = this.ENVIROMENT + 'institute/' + id
 
-    return this.httpClient.get<IInstituto[]>(url);
+    return this.httpClient.delete<IInstituto[]>(url);
   }
 
   addPesquisador(body:any): Observable<any>{
