@@ -5,7 +5,7 @@ content-type: application/json
 {
     "nome": "João Marcos",
     "identificador_lattes": "0023809873085852",
-    "instituto": "Yago Boa noite"
+    "instituto": "Anatomia e Fisiologia"
 }
 
 ###
@@ -15,7 +15,7 @@ content-type: application/json
 {
     "nome": "Yago Frossard",
     "identificador_lattes": "0123809873085852",
-    "instituto": "Eduardo Bom dia"
+    "instituto": "Ciência e Tecnologia"
 }
 
 ###
@@ -25,7 +25,7 @@ content-type: application/json
 {
     "nome": "Yagi Vale dos Sem Luz",
     "identificador_lattes": "0173809873085852",
-    "instituto": "Yago Bom dia"
+    "instituto": "Bioquímica"
 }
 
 ### Get
