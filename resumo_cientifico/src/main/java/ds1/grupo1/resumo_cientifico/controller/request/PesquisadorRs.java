@@ -25,7 +25,7 @@ public class PesquisadorRs {
         this.nome = nome;
     }
     public String getInstituto() {
-        return instituto;
+        return this.instituto;
     }
     public void setInstituto(String instituto) {
         this.instituto = instituto;

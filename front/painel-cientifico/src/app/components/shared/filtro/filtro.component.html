@@ -1,18 +1,29 @@
 <div class="searchArea">
-  <div class="termArea">
-    <!-- <span>Termo:</span> -->
-    <input type="text" placeholder="TERMO" #termText>
-  </div>
-  <div class="selectArea" #selectArea>
-    <!-- <span>Campo:</span> -->
-    <select name="campo" id="campo" (change)="changeSelect($event)">
-      <option value="todos" selected disabled>CAMPO</option>
-      <option value="todos" >todos</option>
-      <option *ngFor="let item of campos" value="{{item}}">{{item}}</option>
-      <!-- <option value="acronimo">Acrônimo</option> -->
-    </select>
+  <div class="AreaTermos">
+    <ng-container *ngFor="let quantidade of quantidadeDeCampos; index as i ">
+      <div class="campos">
+        <div class="termArea">
+          <!-- <span>Termo:</span> -->
+          <!-- <input type="text" placeholder="TERMO" #termText> -->
+          <input type="text" placeholder="TERMO">
+        </div>
+        <!-- <div class="selectArea" #selectArea> -->
+        <div class="selectArea">
+          <!-- <span>Campo:</span> -->
+          <select name="campo" id="campo" (change)="changeSelect($event)">
+            <option value="todos" selected disabled>CAMPO</option>
+            <option value="todos" >todos</option>
+            <option *ngFor="let item of campos" value="{{item}}">{{item}}</option>
+            <!-- <option value="acronimo">Acrônimo</option> -->
+          </select>
+        </div>
+      </div>
+    </ng-container>
   </div>
   <div class="buttonArea">
-    <button (click)="buildTermos(termText.value)">BUSCAR</button>
+    <button (click)="buildTermos()">BUSCAR</button>
+  </div>
+  <div class="buttonArea" *ngIf="composta">
+    <button (click)="addBarraDeBusca()">+</button>
   </div>
 </div>

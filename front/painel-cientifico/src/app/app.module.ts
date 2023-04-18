@@ -13,6 +13,7 @@ import { FiltroComponent } from './components/shared/filtro/filtro.component';
 import { TableListComponent } from './components/shared/table-list/table-list.component';
 import { ModalConfirmacaoComponent } from './components/shared/modal-confirmacao/modal-confirmacao.component';
 import { PesquisadorModalAddComponent } from './components/pesquisador/pesquisador-modal-add/pesquisador-modal-add.component';
+import { ProducoesIndexComponent } from './components/producaoes/producoes-index/producoes-index.component';
 
 const appRoutes: Routes =  [
   {
@@ -22,7 +23,10 @@ const appRoutes: Routes =  [
   {
     path:'pesquisador',
     component:PesquisadorIndexComponent
-  },
+  },{
+    path:'producoes',
+    component:ProducoesIndexComponent
+  }
 ]
 
 @NgModule({
@@ -36,7 +40,8 @@ const appRoutes: Routes =  [
     FiltroComponent,
     TableListComponent,
     ModalConfirmacaoComponent,
-    PesquisadorModalAddComponent
+    PesquisadorModalAddComponent,
+    ProducoesIndexComponent
   ],
   imports: [
     BrowserModule,

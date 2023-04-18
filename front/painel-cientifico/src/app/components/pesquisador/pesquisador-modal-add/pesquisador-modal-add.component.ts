@@ -40,12 +40,11 @@ export class PesquisadorModalAddComponent implements OnInit {
       })
       .subscribe(
         (data) => {
-          // console.log('data', data)
           this.parseXML(data)
             .then((data) => {
+              console.log('data', data)
               this.xmlItems = data;
               this.pesquisadorNaoEncontrado = false;
-              // console.log('xml itens', this.xmlItems)
             });
         },
         err=>{
@@ -67,8 +66,10 @@ export class PesquisadorModalAddComponent implements OnInit {
         // console.log('result', result)
         let resutado = {
           lates:result['CURRICULO-VITAE']['$']['NUMERO-IDENTIFICADOR'],
-          nome:result['CURRICULO-VITAE']['DADOS-GERAIS'][0]['$']['NOME-COMPLETO']
+          nome:result['CURRICULO-VITAE']['DADOS-GERAIS'][0]['$']['NOME-COMPLETO'],
+          pesquisas:result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']
         }
+        // sessionStorage.setItem('pesquisas',JSON.stringify(resutado.pesquisas))
         resolve(resutado)
         // this.pesquisador = resutado;
       });
@@ -77,11 +78,17 @@ export class PesquisadorModalAddComponent implements OnInit {
 
   filtrar(termo:string){
     // console.log('termo', termo == ' ')
+    this.itemSelecionado = '';
+    if(termo = ''){
+      this.institutosFiltrados = this.institutos;
+      return
+    }
     this.institutosFiltrados = this.institutos.filter(
       instituto => {
         return instituto.nome.toUpperCase().includes(termo.toUpperCase())
       }
     )
+    console.log('intituto nome', this.institutosFiltrados)
     this.institutosFiltrados.length == 0
     ?this.itemSelecionado = "Instituto não encontrado"
     :this.itemSelecionado = this.institutosFiltrados[0].nome

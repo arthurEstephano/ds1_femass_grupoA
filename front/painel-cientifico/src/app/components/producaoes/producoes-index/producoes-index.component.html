@@ -1,0 +1,14 @@
+<app-filtro
+  [campos]="camposPesquisa"
+  [composta]="true"
+  (search)="serchFunction($event)"
+></app-filtro>
+<div class="mainPage">
+  <app-table-list
+  [tituloPagina]="'PRODUÇÕES CIENTIFICAS'"
+  [list]="[]"
+  (openModal)="openCloseModal()"
+  (remove)="abrirConfirmacao($event)"
+  >
+  </app-table-list>
+</div>

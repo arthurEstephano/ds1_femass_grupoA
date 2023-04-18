@@ -168,7 +168,6 @@ export class PesquisadorIndexComponent implements OnInit {
   }
 
   serchFunction(searchTerms){
-    console.log('searchTerms', searchTerms)
     if(searchTerms.termo === ""){
       this.loadPesquisadores()
     }else{
