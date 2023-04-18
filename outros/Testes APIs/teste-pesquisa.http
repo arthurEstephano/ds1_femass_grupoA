@@ -1,0 +1,32 @@
+###
+POST http://localhost:8080/research/ HTTP/1.1
+content-type: application/json
+
+{
+    "tipo": "Artigo Publicado Novo",
+    "nome": "Improving tests infrastructure through a model-based approach",
+    "ano": 2011,
+    "periodico": "Software Engineering Notes",
+    "volume": 36,
+    "paginaInicial": 1,
+    "paginaFinal": 10,
+    "pesquisadores": ["0123809873085852","0023809873085852"]
+}
+
+### Get
+GET  http://localhost:8080/research/list HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/2010/2020 HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/2011/2015 HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/2015/2050 HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/2011/2015/Ciência%e%Tecnologia HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/2011/2015/Libras HTTP/1.1
