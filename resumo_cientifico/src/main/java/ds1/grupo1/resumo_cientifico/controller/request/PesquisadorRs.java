@@ -1,5 +1,13 @@
 package ds1.grupo1.resumo_cientifico.controller.request;
 
+
+import jakarta.persistence.ManyToMany;
+
+import java.util.Set;
+
+import ds1.grupo1.resumo_cientifico.model.Pesquisa;
+
+
 public class PesquisadorRs {
     private Long id;
     private String identificador_lattes;
@@ -30,5 +38,16 @@ public class PesquisadorRs {
     public void setInstituto(String instituto) {
         this.instituto = instituto;
     }
+    
+    @ManyToMany
+    private Set<Pesquisa> pesquisa;
+
+    public Set<Pesquisa> getPesquisa() {
+        return pesquisa;
+    }
+    public void setPesquisa(Set<Pesquisa> pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+
     
 }
