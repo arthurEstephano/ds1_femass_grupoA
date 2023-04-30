@@ -103,33 +103,34 @@ public class PesquisaController {
     */
 
     @PostMapping("/")
-    public void gravar(@RequestBody PesquisaRs pesquisaRs) {
-        Pesquisa pesquisa = new Pesquisa();
-        pesquisa.setAno(pesquisaRs.getAno());
-        pesquisa.setNome(pesquisaRs.getNome());
-        pesquisa.setPaginaFinal(pesquisaRs.getPaginaFinal());
-        pesquisa.setPaginaInicial(pesquisaRs.getPaginaInicial());
-        pesquisa.setPeriodico(pesquisaRs.getPeriodico());
-        pesquisa.setTipo(pesquisaRs.getTipo());
-        pesquisa.setVolume(pesquisaRs.getVolume());
-
-        List<Pesquisador> pesquisadores = pesquisadorRepository.findAll();
-        Set <Pesquisador> hashp = new HashSet<>();
-        for (String s : pesquisaRs.getPesquisadores()) {
-            for (Pesquisador p : pesquisadores) {
-                if (p.getIdentificador_lattes().equals(s)){
-                    if(pesquisa.getPesquisadores() == null){
-                        hashp.add(p);
-                        pesquisa.setPesquisadores(hashp);
-                    }
-                    else{
-                        pesquisa.getPesquisadores().add(p);
+    public void gravar(@RequestBody ArrayList<PesquisaRs> pesquisaRss) {
+        for( PesquisaRs pesquisaRs : pesquisaRss){
+            Pesquisa pesquisa = new Pesquisa();
+            pesquisa.setAno(pesquisaRs.getAno());
+            pesquisa.setNome(pesquisaRs.getNome());
+            pesquisa.setPaginaFinal(pesquisaRs.getPaginaFinal());
+            pesquisa.setPaginaInicial(pesquisaRs.getPaginaInicial());
+            pesquisa.setPeriodico(pesquisaRs.getPeriodico());
+            pesquisa.setTipo(pesquisaRs.getTipo());
+            pesquisa.setVolume(pesquisaRs.getVolume());
+    
+            List<Pesquisador> pesquisadores = pesquisadorRepository.findAll();
+            Set <Pesquisador> hashp = new HashSet<>();
+            for (String s : pesquisaRs.getPesquisadores()) {
+                for (Pesquisador p : pesquisadores) {
+                    if (p.getIdentificador_lattes().equals(s)){
+                        if(pesquisa.getPesquisadores() == null){
+                            hashp.add(p);
+                            pesquisa.setPesquisadores(hashp);
+                        }
+                        else{
+                            pesquisa.getPesquisadores().add(p);
+                        }
                     }
                 }
             }
+            pesquisaRepository.save(pesquisa);
         }
-
-        pesquisaRepository.save(pesquisa);
     }
 
     @DeleteMapping("/{id}")

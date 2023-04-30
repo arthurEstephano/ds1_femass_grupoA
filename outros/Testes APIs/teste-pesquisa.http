@@ -1,9 +1,10 @@
-###
+### POST
 POST http://localhost:8080/research/ HTTP/1.1
 content-type: application/json
 
+[
 {
-    "tipo": "Artigo Publicado Novo",
+    "tipo": "Artigo Publicado",
     "nome": "Improving tests infrastructure through a model-based approach",
     "ano": 2011,
     "periodico": "Software Engineering Notes",
@@ -11,6 +12,32 @@ content-type: application/json
     "paginaInicial": 1,
     "paginaFinal": 10,
     "pesquisadores": ["0123809873085852","0023809873085852"]
+},
+{
+    "tipo": "Livro Publicado",
+    "nome": "Blablabla",
+    "ano": 2010,
+    "periodico": "Software Engineering Notes",
+    "volume": 36,
+    "paginaInicial": 1,
+    "paginaFinal": 10,
+    "pesquisadores": ["0123809873085852","0023809873085852"]
+}
+]
+
+### POST
+POST http://localhost:8080/research/ HTTP/1.1
+content-type: application/json
+
+{
+    "tipo": "Livro Publicado",
+    "nome": "Python for Dummies",
+    "ano": 2020,
+    "periodico": "Programming Courses",
+    "volume": 2,
+    "paginaInicial": 0,
+    "paginaFinal": 167,
+    "pesquisadores": ["0023809873085852"]
 }
 
 ### Get

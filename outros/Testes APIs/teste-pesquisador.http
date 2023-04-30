@@ -23,7 +23,7 @@ POST http://localhost:8080/researcher/ HTTP/1.1
 content-type: application/json
 
 {
-    "nome": "Yagi Vale dos Sem Luz",
+    "nome": "Arthur Moura",
     "identificador_lattes": "0173809873085852",
     "instituto": "Bioquímica"
 }
