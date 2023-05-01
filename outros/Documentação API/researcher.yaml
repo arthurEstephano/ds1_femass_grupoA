@@ -3,26 +3,27 @@ info:
   title: API Pesquisador
   description: |-
     API de informações de pesquisador. Faz parte das APIs básicas para o sistema de currículos lattes desenvolvido na disciplina de Desenvolvimento de Sistemas 1 da FeMass pelo grupo A em 2023.1
-    Contém de identificação.
+    Contém dados sensíveis ou de identificação.
     API de dados abertos.
     Para mais informações entrar na URL de contato.
   version: 1.0.0
   contact:
     url: "https://github.com/arthurEstephano/ds1_femass_grupoA"
+    name: Github do grupo A da disciplina de DS1 da FeMASS
 servers:
   - url: "https://api.grupoa.com.br/researcher"
     description: Servidor de Produção
   - url: "https://api.grupoa.com.br/researcher"
     description: Servidor de Homologação
 tags:
-  - name: "researcher"
+  - name: "Researcher"
 paths:
   /list:
     get:
       tags:
-        - researcher
-      summary: Obtém a lista de pesquisadors
-      description: "Obtém a lista de pesquisadors"
+        - Researcher
+      summary: Obtém a lista de pesquisadores
+      description: "Obtém a lista de pesquisadores"
       operationId: "researchersList"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
@@ -31,7 +32,7 @@ paths:
         - $ref: "#/components/parameters/pageSize"
       responses:
         "200":
-          description: Dados dos pesquisadors
+          description: Dados dos pesquisadores
           content:
             application/json:
               schema:
@@ -57,7 +58,7 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Dados dos pesquisadors
+          description: Dados dos pesquisadores
           content:
             application/json:
               schema:
@@ -65,9 +66,9 @@ paths:
   /name/{nome}:
     get:
       tags:
-        - researcher
-      summary: Obtém a lista de pesquisadors filtrados por um nome especificado.
-      description: "Obtém a lista de pesquisadors filtrados por um nome especificado."
+        - Researcher
+      summary: Obtém a lista de pesquisadores filtrados por um nome especificado.
+      description: "Obtém a lista de pesquisadores filtrados por um nome especificado."
       operationId: "researchersListByName"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
@@ -77,7 +78,7 @@ paths:
         - $ref: "#/components/parameters/nome"
       responses:
         "200":
-          description: Dados dos pesquisadors filtrados por um nome especificado.
+          description: Dados dos pesquisadores filtrados por um nome especificado.
           content:
             application/json:
               schema:
@@ -103,7 +104,7 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Dados dos pesquisadors
+          description: Dados dos pesquisadores
           content:
             application/json:
               schema:
@@ -111,7 +112,7 @@ paths:
   /:
     post:
       tags:
-        - researcher
+        - Researcher
       summary: Cria um pesquisador
       description: "Cria um pesquisador"
       operationId: "researcherCreate"
@@ -157,7 +158,7 @@ paths:
   /{id}:
     delete:
       tags:
-        - researcher
+        - Researcher
       summary: Deleta um pesquisador
       description: "Deleta um pesquisador especificado"
       operationId: "researcherDelete"
