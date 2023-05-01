@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  title: API Instituto
-  description: |-
-    API de informações de instituto. Faz parte das APIs básicas para o sistema de currículos lattes desenvolvido na disciplina de Desenvolvimento de Sistemas 1 da FeMass pelo grupo A em 2023.1
-    Não contém dados sensíveis ou de identificação.
+  title: API Pesquisa
+  description: |
+    API de informações de Pesquisador. Faz parte das APIs básicas para o sistema de currículos lattes desenvolvido na disciplina de Desenvolvimento de Sistemas 1 da FeMass pelo grupo A em 2023.1
+    Contém de identificação.
     API de dados abertos.
     Para mais informações entrar na URL de contato.
   version: 1.0.0
@@ -11,20 +11,20 @@ info:
     url: "https://github.com/arthurEstephano/ds1_femass_grupoA"
     name: Github do grupo A da disciplina de DS1 da FeMASS
 servers:
-  - url: "https://api.grupoa.com.br/institute"
+  - url: "https://api.grupoa.com.br/research"
     description: Servidor de Produção
-  - url: "https://api.grupoa.com.br/institute"
+  - url: "https://api.grupoa.com.br/research"
     description: Servidor de Homologação
 tags:
-  - name: "Institute"
+  - name: "Research"
 paths:
   /list:
     get:
       tags:
-        - Institute
-      summary: Obtém a lista de institutos
-      description: "Obtém a lista de institutos"
-      operationId: "institutesList"
+        - Research
+      summary: Obtém a lista de pesquisas
+      description: "Obtém a lista de pesquisas"
+      operationId: "researchesList"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
         - $ref: "#/components/parameters/content-Type"
@@ -32,11 +32,11 @@ paths:
         - $ref: "#/components/parameters/pageSize"
       responses:
         "200":
-          description: Dados dos institutos
+          description: Dados das pesquisas
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
+                $ref: "#/components/schemas/ResponseResearchList"
         "204":
           $ref: "#/components/responses/NoContent"
         "400":
@@ -58,31 +58,33 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Dados dos institutos
+          description: Dados das pesquisas
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
-  /name/{nome}:
+                $ref: "#/components/schemas/ResponseResearchList"
+
+  /report/{anoInicio}/{anoFim}:
     get:
       tags:
-        - Institute
-      summary: Obtém a lista de institutos filtrados por um nome especificado.
-      description: "Obtém a lista de institutos filtrados por um nome especificado."
-      operationId: "institutesListByName"
+        - Research
+      summary: Obtém a lista de pesquisas filtrados por um nome especificado.
+      description: "Obtém a lista de pesquisas filtrados por um nome especificado."
+      operationId: "researchesListByAnoBetween"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
         - $ref: "#/components/parameters/content-Type"
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/pageSize"
-        - $ref: "#/components/parameters/nome"
+        - $ref: "#/components/parameters/anoInicio"
+        - $ref: "#/components/parameters/anoFim"
       responses:
         "200":
-          description: Dados dos institutos filtrados por um nome especificado.
+          description: Dados das pesquisas filtrados por um nome especificado.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
+                $ref: "#/components/schemas/ResponseResearchList"
         "204":
           $ref: "#/components/responses/NoContent"
         "400":
@@ -104,31 +106,34 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Dados dos institutos
+          description: Dados das pesquisas
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
-  /acronym/{acronimo}:
+                $ref: "#/components/schemas/ResponseResearchList"
+
+  /report/{anoInicio}/{anoFim}/{instituto}:
     get:
       tags:
-        - Institute
-      summary: Obtém a lista de institutos filtrados por um acronimo especificado.
-      description: "Obtém a lista de institutos filtrados por um acronimo especificado."
-      operationId: "institutesListByAcronym"
+        - Research
+      summary: Obtém a lista de pesquisas filtrados por um nome especificado de um instituto.
+      description: "Obtém a lista de pesquisas filtrados por um nome especificado de um instituto."
+      operationId: "researchesListByAnoBetweenAndInstituto"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
         - $ref: "#/components/parameters/content-Type"
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/pageSize"
-        - $ref: "#/components/parameters/acronimo"
+        - $ref: "#/components/parameters/anoInicio"
+        - $ref: "#/components/parameters/anoFim"
+        - $ref: "#/components/parameters/instituto"
       responses:
         "200":
-          description: Dados dos institutos filtrados por um acronimo especificado.
+          description: Dados das pesquisas filtrados por um nome especificado de um instituto.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
+                $ref: "#/components/schemas/ResponseResearchList"
         "204":
           $ref: "#/components/responses/NoContent"
         "400":
@@ -150,31 +155,34 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Dados dos institutos
+          description: Dados das pesquisas
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
-  /name-acronym/{busca}:
+                $ref: "#/components/schemas/ResponseResearchList"
+
+  /report/{anoInicio}/{anoFim}/researcher/{pesquisador}:
     get:
       tags:
-        - Institute
-      summary: Obtém a lista de institutos por um nome ou acronimo especificado.
-      description: "Obtém a lista de institutos por um nome ou acronimo especificado."
-      operationId: "institutesListByNameOrAcronym"
+        - Research
+      summary: Obtém a lista de pesquisas filtrados por um nome especificado de um pesquisador.
+      description: "Obtém a lista de pesquisas filtrados por um nome especificado de um pesquisador."
+      operationId: "researchesListByAnoBetweenAndResearcher"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
         - $ref: "#/components/parameters/content-Type"
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/pageSize"
-        - $ref: "#/components/parameters/busca"
+        - $ref: "#/components/parameters/anoInicio"
+        - $ref: "#/components/parameters/anoFim"
+        - $ref: "#/components/parameters/pesquisador"
       responses:
         "200":
-          description: Dados dos institutos filtrados por um nome ou acronimo especificado.
+          description: Dados das pesquisas filtrados por um nome especificado de um pesquisador.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
+                $ref: "#/components/schemas/ResponseResearchList"
         "204":
           $ref: "#/components/responses/NoContent"
         "400":
@@ -196,18 +204,19 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Dados dos institutos
+          description: Dados das pesquisas
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseInstituteList"
+                $ref: "#/components/schemas/ResponseResearchList"
+
   /:
     post:
       tags:
-        - Institute
-      summary: Cria um instituto
-      description: "Cria um instituto"
-      operationId: "instituteCreate"
+        - Research
+      summary: Cria uma ou mais pesquisas
+      description: "Cria uma ou mais pesquisas"
+      operationId: "researchCreate"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
         - $ref: "#/components/parameters/content-Type"
@@ -217,10 +226,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateInstitute"
+              $ref: "#/components/schemas/CreateResearch"
       responses:
         "201":
-          $ref: "#/components/responses/201InstituteCreated"
+          $ref: "#/components/responses/201ResearchCreated"
         "204":
           $ref: "#/components/responses/NoContent"
         "400":
@@ -242,18 +251,19 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Instituto criado.
+          description: Pesquisa criada.
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/201InstituteCreated"
+                $ref: "#/components/responses/201ResearchCreated"
+
   /{id}:
     delete:
       tags:
-        - Institute
-      summary: Deleta um instituto
-      description: "Deleta um instituto especificado"
-      operationId: "instituteDelete"
+        - Research
+      summary: Deleta uma pesquisa
+      description: "Deleta uma pesquisa especificada"
+      operationId: "researchDelete"
       parameters:
         - $ref: "#/components/parameters/cache-Control"
         - $ref: "#/components/parameters/content-Type"
@@ -262,7 +272,7 @@ paths:
         - $ref: "#/components/parameters/id"
       responses:
         "204":
-          $ref: "#/components/responses/204InstituteDeleted"
+          $ref: "#/components/responses/204ResearchDeleted"
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -282,79 +292,144 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
         default:
-          description: Instituto deletado.
+          description: Pesquisa deletada.
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/204InstituteDeleted"
+                $ref: "#/components/responses/204ResearchDeleted"
+
 components:
   schemas:
-    ResponseInstituteList:
+    ResponseResearchList:
       type: array
       items:
+        type: object
         required:
           - id
+          - tipo
           - nome
-          - acronimo
+          - ano
+          - pesquisadores
         properties:
           id:
-            description: Id do instituto.
+            description: Id da pesquisa.
             type: number
             maxLength: 99999
             example: 1
-          nome:
-            description: Nome do instituto.
+          tipo:
+            description: Tipo da pesquisa realizada.
             type: string
             maxLength: 100
-            example: Instituto de Matemática
-          acronimo:
-            description: Acronimo do instituto
-            type: number
+            example: "Artigo Publicado"
+          nome:
+            description: Nome da pesquisa.
+            type: string
             maxLength: 100
-            example: XPTO
+            example: Improving tests infrastructure through a model-based approach
+          ano:
+            description: Ano de publicação da pesquisa
+            type: integer
+            example: 2015
+            maxLength: 4
+          periodico:
+            description: Nome do periodico.
+            type: string
+            maxLength: 250
+            example: Software Engineering Notes
+          volume:
+            description: Volume da pesquisa.
+            type: integer
+            example: 60
+          paginaInicial:
+            description: Página inicial da pesquisa.
+            type: integer
+            example: 1
+          paginaFinal:
+            description: Página final da pesquisa.
+            type: integer
+            example: 10
+          pesquisadores:
+            type: array
+            items:
+              type: string
+              maxLength: 100
+              example: Jorge da Silva
           links:
             $ref: "#/components/schemas/Links"
           meta:
             $ref: "#/components/schemas/Meta"
-    CreateInstitute:
-      type: object
-      required:
-        - nome
-        - acronimo
-      properties:
-        nome:
-          description: Nome do instituto.
-          type: string
-          maxLength: 100
-          example: Instituto de Matemática
-        acronimo:
-          description: Acronimo do instituto
-          type: number
-          maxLength: 100
-          example: XPTO
+    CreateResearch:
+      type: array
+      items:
+        type: object
+        required:
+          - tipo
+          - nome
+          - ano
+          - pesquisadores
+        properties:
+          tipo:
+            description: Tipo da pesquisa realizada.
+            type: string
+            maxLength: 100
+            example: "Artigo Publicado"
+          nome:
+            description: Nome da pesquisa.
+            type: string
+            maxLength: 100
+            example: Improving tests infrastructure through a model-based approach
+          ano:
+            description: Ano de publicação da pesquisa
+            type: integer
+            example: 2015
+            maxLength: 4
+          periodico:
+            description: Nome do periodico.
+            type: string
+            maxLength: 250
+            example: Software Engineering Notes
+          volume:
+            description: Volume da pesquisa.
+            type: integer
+            example: 60
+          paginaInicial:
+            description: Página inicial da pesquisa.
+            type: integer
+            example: 1
+          paginaFinal:
+            description: Página final da pesquisa.
+            type: integer
+            example: 10
+          pesquisadores:
+            type: array
+            items:
+              type: string
+              maxLength: 100
+              example: 0023809873085852
+
     Links:
       type: object
       properties:
         self:
           type: string
           description: URL da página atualmente requisitada
-          example: "https://api.grupoa.com.br/institute"
+          example: "https://api.grupoa.com.br/research"
         first:
           type: string
           description: URL da primeira página de registros
-          example: "https://api.grupoa.com.br/institute"
+          example: "https://api.grupoa.com.br/research"
         prev:
           type: string
           description: URL da página anterior de registros
-          example: "https://api.grupoa.com.br/institute"
+          example: "https://api.grupoa.com.br/research"
         next:
           type: string
           description: URL da próxima página de registros
-          example: "https://api.grupoa.com.br/institute"
+          example: "https://api.grupoa.com.br/research"
         last:
           type: string
           description: URL da última página de registros
-          example: "https://api.grupoa.com.br/institute"
+          example: "https://api.grupoa.com.br/research"
     Meta:
       type: object
       properties:
@@ -429,31 +504,38 @@ components:
         type: integer
         default: 10
         minimum: 1
-    nome:
-      name: nome
+    anoInicio:
+      name: anoInicio
       in: path
-      description: Nome do instituto
+      description: Ano início da pesquisa
+      required: true
+      schema:
+        type: integer
+    anoFim:
+      name: anoFim
+      in: path
+      description: Ano fim da pesquisa
+      required: true
+      schema:
+        type: integer
+    instituto:
+      name: instituto
+      in: path
+      description: Nome do Instituto
       required: true
       schema:
         type: string
-    acronimo:
-      name: acronimo
+    pesquisador:
+      name: pesquisador
       in: path
-      description: Acronimo do instituto
-      required: true
-      schema:
-        type: string
-    busca:
-      name: busca
-      in: path
-      description: Nome ou acronimo do instituto
+      description: Nome do pesquisador
       required: true
       schema:
         type: string
     id:
       name: id
       in: path
-      description: Id do instituto
+      description: Id da pesquisa
       required: true
       schema:
         type: number
@@ -534,7 +616,7 @@ components:
         application/json; charset=utf-8:
           schema:
             $ref: "#/components/schemas/ResponseError"
-    201InstituteCreated:
-      description: Instituto criado com sucesso.
-    204InstituteDeleted:
-      description: Instituto deletado com sucesso.
+    201ResearchCreated:
+      description: Pesquisa criada com sucesso.
+    204ResearchDeleted:
+      description: Pesquisa deletada com sucesso.
