@@ -16,12 +16,12 @@ content-type: application/json
 {
     "tipo": "Livro Publicado",
     "nome": "Blablabla",
-    "ano": 2010,
+    "ano": 2000,
     "periodico": "Software Engineering Notes",
     "volume": 36,
     "paginaInicial": 1,
     "paginaFinal": 10,
-    "pesquisadores": ["0123809873085852","0023809873085852"]
+    "pesquisadores": ["0173809873085852"]
 }
 ]
 
@@ -29,16 +29,19 @@ content-type: application/json
 POST http://localhost:8080/research/ HTTP/1.1
 content-type: application/json
 
+[
 {
     "tipo": "Livro Publicado",
     "nome": "Python for Dummies",
-    "ano": 2020,
+    "ano": 1900,
     "periodico": "Programming Courses",
     "volume": 2,
     "paginaInicial": 0,
     "paginaFinal": 167,
     "pesquisadores": ["0023809873085852"]
+
 }
+]
 
 ### Get
 GET  http://localhost:8080/research/list HTTP/1.1
@@ -53,7 +56,16 @@ GET  http://localhost:8080/research/report/2011/2015 HTTP/1.1
 GET  http://localhost:8080/research/report/2015/2050 HTTP/1.1
 
 ### Get
-GET  http://localhost:8080/research/report/2011/2015/Ciência%e%Tecnologia HTTP/1.1
+GET  http://localhost:8080/research/report/0/2000 HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/0/9999/Anatomia%20e%20Fisiologia HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/0/9999/Ciência%20e%20Tecnologia HTTP/1.1
+
+### Get
+GET  http://localhost:8080/research/report/0/9999/researcher/Yago%20Frossard HTTP/1.1
 
 ### Get
 GET  http://localhost:8080/research/report/2011/2015/Libras HTTP/1.1
