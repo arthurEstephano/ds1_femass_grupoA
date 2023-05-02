@@ -14,6 +14,7 @@ import { TableListComponent } from './components/shared/table-list/table-list.co
 import { ModalConfirmacaoComponent } from './components/shared/modal-confirmacao/modal-confirmacao.component';
 import { PesquisadorModalAddComponent } from './components/pesquisador/pesquisador-modal-add/pesquisador-modal-add.component';
 import { ProducoesIndexComponent } from './components/producaoes/producoes-index/producoes-index.component';
+import { ProducoesFiltroComponent } from './components/producaoes/producoes-filtro/producoes-filtro.component';
 
 const appRoutes: Routes =  [
   {
@@ -41,7 +42,8 @@ const appRoutes: Routes =  [
     TableListComponent,
     ModalConfirmacaoComponent,
     PesquisadorModalAddComponent,
-    ProducoesIndexComponent
+    ProducoesIndexComponent,
+    ProducoesFiltroComponent
   ],
   imports: [
     BrowserModule,

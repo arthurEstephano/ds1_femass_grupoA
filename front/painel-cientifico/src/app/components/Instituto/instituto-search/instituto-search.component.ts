@@ -19,7 +19,7 @@ export class InstitutoSearchComponent implements OnInit {
   }
 
   buildTermos(nome:string){
-    // console.log(`nome: ${nome}, campo: ${this.selectField}`)
+    // //console.log(`nome: ${nome}, campo: ${this.selectField}`)
     let fields = {
       termo:nome,
       campo:this.selectField

@@ -69,3 +69,283 @@ GET  http://localhost:8080/research/report/0/9999/researcher/Yago%20Frossard HTT
 
 ### Get
 GET  http://localhost:8080/research/report/2011/2015/Libras HTTP/1.1
+
+
+[
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "DISCORDANCE BETWEEN BODY MASS INDEX AND ANTHROPOMETRIC MEASUREMENTS AMONG HIV-1-INFECTED PATIENTS ON ANTIRETROVIRAL THERAPY AND WITH LIPOATROPHY/LIPOHYPERTROPHY SYNDROME",
+        "ano": 2015,
+        "periodico": "REVISTA DO INSTITUTO DE MEDICINA TROPICAL DE SAO PAULO",
+        "volume": 57,
+        "paginaInicial": 105,
+        "paginaFinal": 110,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "A Suplementa��o de &#946;-hidroxi-&#946;-metilbutirato em idosos com obesidade sarcop�ncia.",
+        "ano": 2015,
+        "periodico": "REVISTA BRASILEIRA DE NUTRI��O CL�NICA",
+        "volume": 30,
+        "paginaInicial": 252,
+        "paginaFinal": 255,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Altera��es bioqu�micas em pessoas com HIV/AIDS no munic�pio de Maca�, Rio de Janeiro, Brasil",
+        "ano": 2018,
+        "periodico": "Acta Brasiliensis",
+        "volume": 2,
+        "paginaInicial": 80,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Determination of vitamin D in tears of healthy individuals by the electrochemiluminescence method",
+        "ano": 2019,
+        "periodico": "JOURNAL OF CLINICAL LABORATORY ANALYSIS",
+        "volume": 1,
+        "paginaInicial": null,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Low bone mineral density among HIV-infected patients in Brazil",
+        "ano": 2017,
+        "periodico": "REVISTA DO INSTITUTO DE MEDICINA TROPICAL DE S�O PAULO",
+        "volume": 59,
+        "paginaInicial": 1,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Self-reported lipodystrophy, nutritional, lipemic profile and its impact on the body image of HIV-1-infected persons, with and without antiretroviral therapy",
+        "ano": 2019,
+        "periodico": "AIDS CARE-PSYCHOLOGICAL AND SOCIO-MEDICAL ASPECTS OF AIDS/HIV",
+        "volume": 1,
+        "paginaInicial": 1,
+        "paginaFinal": 6,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Association between changes in body fat distribution, biochemical profile, time of HIV diagnosis, and antiretroviral treatment in adults living with and without virus infection",
+        "ano": 2020,
+        "periodico": "REVISTA DA ASSOCIA��O M�DICA BRASILEIRA",
+        "volume": 66,
+        "paginaInicial": 67,
+        "paginaFinal": 73,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Frequ�ncia de lipodistrofia e fatores de risco para SARS COV 2 em pessoas vivendo com HIV",
+        "ano": 2020,
+        "periodico": "Boletim Ci�ncia Maca�",
+        "volume": 1,
+        "paginaInicial": 145,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Projetos integrados de nutri��o e farm�cia em tempos de Covid 19: um relato de experi�ncia",
+        "ano": 2021,
+        "periodico": "Boletim Ci�ncia Maca�",
+        "volume": 1,
+        "paginaInicial": 177,
+        "paginaFinal": 177,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "A interface ensino-pesquisa-extens�o na constru��o discente: relato de experi�ncia de um projeto universit�rio",
+        "ano": 2021,
+        "periodico": "Conecte-se! Revista Interdisciplinar de Extens�o",
+        "volume": 5,
+        "paginaInicial": 165,
+        "paginaFinal": 172,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Self-Corporal Image among People Living with HIV/AIDS with Lipodystrophy Syndrome in Brazil",
+        "ano": 2022,
+        "periodico": "WORLD JOURNAL OF AIDS",
+        "volume": 12,
+        "paginaInicial": 32,
+        "paginaFinal": 42,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Artigo Publicado",
+        "nome": "Descri��o de instrumento de avalia��o do estado nutricional para pacientes hospitalizados (n�o cr�ticos) com Covid 19",
+        "ano": 2021,
+        "periodico": "Boletim Ci�ncia Maca�",
+        "volume": 1,
+        "paginaInicial": 160,
+        "paginaFinal": 160,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Livro Publicado",
+        "nome": "Nutri��o Funcional - Segunda Edi��o",
+        "ano": 2018,
+        "periodico": "Editora Pay� Eireli",
+        "volume": null,
+        "paginaInicial": 0,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "Aspectos nutricionais, psicol�gicos e cuidados de enfermagem em pacientes HIV+",
+        "ano": 2010,
+        "periodico": "S�rie da pesquisa � Pr�tica Clinica -SPPC -  HIV/AIDS",
+        "volume": 1,
+        "paginaInicial": 85,
+        "paginaFinal": 101,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "CONDI��O CL�NICA DE PESSOAS VIVENDO COM HIV NO MUNIC�PIO DE MACA�-RJ",
+        "ano": 2019,
+        "periodico": "Ci�ncias da Sa�de: Da Teoria � Pr�tica 5",
+        "volume": null,
+        "paginaInicial": 154,
+        "paginaFinal": 159,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "Relato de experi�ncia do projeto Envelhecimento, Nutri��o e Promo��o da Sa�de - ENUSA",
+        "ano": 2019,
+        "periodico": "Saberes e experi�ncias de extens�o em promo��o da sa�de",
+        "volume": 200,
+        "paginaInicial": 7,
+        "paginaFinal": 217,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "Aspectos cl�nico-epidemiol�gicos, autopercep��o da imagem corporal e nutricionais de pessoas vivendo com HIV AIDS atendidos por um servi�o de assist�ncia especializada",
+        "ano": 2021,
+        "periodico": "Experi�ncias, sabores e afetos: dez anos do curso de Nutri��o do Campus UFRJ Maca�",
+        "volume": 1,
+        "paginaInicial": 200,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "Estado nutricional e risco cardiovascular de pessoas vivendo com HIV em seguimento ambulatorial no munic�pio de Maca� RJ",
+        "ano": 2021,
+        "periodico": "Experi�ncias, sabores e afetos: dez anos do curso de Nutri��o do Campus UFRJ Maca�",
+        "volume": 1,
+        "paginaInicial": 226,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "ASSOCIA��O ENTRE PERFIL ANTROPOM�TRICO, BIOQU�MICO EM PESSOAS VIVENDO COM HIV, LIPODISTROFIA E S�NDROME METAB�LICA EM ATENDIMENTO AMBULATORIAL",
+        "ano": 2021,
+        "periodico": "Nutri��o Experimental e Cl�nica e sua A��o Transformadora 2",
+        "volume": null,
+        "paginaInicial": 45,
+        "paginaFinal": 56,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "Imunidade, Covid 19 e C�ncer",
+        "ano": 2020,
+        "periodico": "Sistema Imunol�gico: Especificidades da COVID 19",
+        "volume": 1,
+        "paginaInicial": 34,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "ESTUDO DA DISTOR��O DE IMAGEM E O FEEDBACK SOCIAL VIVENCIADO PELO INDIV�DUO COM A OP��O PELA CIRURGIA BARI�TRICA",
+        "ano": 2021,
+        "periodico": "Alimentos, nutri��o e sa�de 2",
+        "volume": null,
+        "paginaInicial": 168,
+        "paginaFinal": 177,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "Autopercep��o da imagem corporal e sua rela��o com vari�veis socioecon�micas, de sa�de e antropom�tricas de idosos",
+        "ano": 2020,
+        "periodico": "Sa�de, atividade f�sica, nutri��o e bem-estar: teoria e pr�tica",
+        "volume": 2,
+        "paginaInicial": 110,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    },
+    {
+        "tipo": "Capítulo de Livro",
+        "nome": "Consumo de nutrientes antioxidantes e avalia��o do n�vel de conhecimento sobre c�ncer de adolescentes de uma unidade escolar do munic�pio de Maca� RJ",
+        "ano": 2021,
+        "periodico": "Experi�ncias, sabores e afetos: dez anos do curso de Nutri��o do Campus UFRJ Maca�",
+        "volume": 1,
+        "paginaInicial": 253,
+        "paginaFinal": null,
+        "pesquisadores": [
+            "0053636364868790"
+        ]
+    }
+]

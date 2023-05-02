@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IPesquisa } from 'src/app/models/pesquisas.model';
 
 const pesquisasMock = [
   {
@@ -36,14 +37,14 @@ const pesquisasMock = [
 export class ProducoesIndexComponent implements OnInit {
 
   public openModal: boolean = false;
-  public listaDePesquisa = pesquisasMock;
+  public listaDePesquisa = [];
   public camposPesquisa = ['Institudo', 'Pesquisador', 'Tipos Produção']
 
   constructor() { }
 
   ngOnInit(): void {
     // this.listaDePesquisa = JSON.parse(sessionStorage.getItem('pesquisas'))
-    // console.log('lista', this.listaDePesquisa)
+    // //console.log('lista', this.listaDePesquisa)
   }
 
   loadPesquisas(){
@@ -62,7 +63,24 @@ export class ProducoesIndexComponent implements OnInit {
   }
 
   serchFunction(item){
-    console.log('item search', item);
+    //console.log('item search', item);
+  }
+
+  converterLista(listaPEsquisa: IPesquisa[]){
+    let listaAtualizada = listaPEsquisa.map(pesquisa => {
+      return{
+        Tipo: pesquisa.tipo,
+        Pesquisador:pesquisa.pesquisadores,
+        Detalhamento:`${pesquisa.nome}, v. ${pesquisa.volume}, p.${pesquisa.paginaInicial} - ${pesquisa.paginaFinal}, ${pesquisa.ano}`
+      }
+    })
+
+    this.listaDePesquisa = listaAtualizada;
+  }
+
+  atualizarLista(lista){
+    this.converterLista(lista)
+    // this.listaDePesquisa = lista
   }
 
 }

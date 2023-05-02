@@ -9,6 +9,7 @@ export class TableListComponent implements OnInit, OnChanges {
   public headers:string[] = [];
   @Input() tituloPagina: string;
   @Input() list: any[];
+  @Input() acaoDeletar: boolean= true;
   @Output() openModal = new EventEmitter()
   @Output() remove = new EventEmitter()
 
@@ -21,7 +22,7 @@ export class TableListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getTableHeaders()
-    console.log('list', this.list)
+    //console.log('list', this.list)
   }
 
   getTableHeaders(){
@@ -30,14 +31,14 @@ export class TableListComponent implements OnInit, OnChanges {
     //   const element = array[index];
 
     // }
-    console.log('list', this.list)
+    //console.log('list', this.list)
     for (const key in this.list[0]) {
       if(!this.headers.includes(key.toUpperCase()))
         if(key.toUpperCase() != 'ID')
           this.headers.push(key.toUpperCase())
     }
     this.headers = this.headers.sort()
-    console.log('header', this.headers)
+    //console.log('header', this.headers)
   }
 
   openModalAdd(){

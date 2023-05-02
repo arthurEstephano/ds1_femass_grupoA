@@ -13,7 +13,6 @@ export class FiltroComponent implements OnInit {
   public selectField: string = 'Todos';
   public quantidadeDeCampos: number[] = [1];
 
-  @Input() composta ?: boolean = false;
   @Input() campos: string[] = []
   @Output() search = new EventEmitter()
   constructor() { }
@@ -27,8 +26,8 @@ export class FiltroComponent implements OnInit {
 
   // buildTermos(nome:string){
   buildTermos(){
-    // console.log('termos', this.termText.termText)
-    // console.log(`nome: ${nome}, campo: ${this.selectField}`)
+    // //console.log('termos', this.termText.termText)
+    // //console.log(`nome: ${nome}, campo: ${this.selectField}`)
     // let fields = {
     //   termo:nome,
     //   campo:this.selectField
@@ -36,7 +35,7 @@ export class FiltroComponent implements OnInit {
     // this.search.emit(fields)
     let fields = {};
     for(let i = 0; i < this.quantidadeDeCampos.length; i++){
-      console.log('termos', document.querySelectorAll('.termArea input')[i])
+      //console.log('termos', document.querySelectorAll('.termArea input')[i])
       // let termo = document.querySelectorAll('.termArea input')[i].value;
       // let campo = document.querySelectorAll('.selectArea select')[i].value;
       // fields[i] = { termo, campo };

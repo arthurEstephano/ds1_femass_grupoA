@@ -13,7 +13,7 @@
 }
 
 .listHead{
-  font-size: 600;
+  font-weight: 600;
 }
 
 .listHead > .listCell{
@@ -30,6 +30,10 @@
   margin-bottom: 5px;
 }
 
+.listBody{
+  text-transform: uppercase;
+}
+
 .listBody > .listCell{
   border-bottom: 1px solid #ccc;
   margin-right: 5px;
@@ -40,6 +44,7 @@
 .nomeCell{
   width: 20vw;
   padding: 10px;
+  word-break: break-word;
 }
 
 .acronimoCell{

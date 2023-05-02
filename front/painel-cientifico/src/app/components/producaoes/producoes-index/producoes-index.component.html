@@ -1,14 +1,15 @@
-<app-filtro
-  [campos]="camposPesquisa"
-  [composta]="true"
-  (search)="serchFunction($event)"
-></app-filtro>
+<app-producoes-filtro
+  (listaAtualizada)="atualizarLista($event)"
+></app-producoes-filtro>
 <div class="mainPage">
   <app-table-list
   [tituloPagina]="'PRODUÇÕES CIENTIFICAS'"
-  [list]="[]"
+  [list]="listaDePesquisa"
+  [acaoDeletar]="false"
   (openModal)="openCloseModal()"
   (remove)="abrirConfirmacao($event)"
   >
   </app-table-list>
+
+
 </div>

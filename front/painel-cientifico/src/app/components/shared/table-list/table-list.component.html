@@ -9,7 +9,7 @@
 
       <div class="listCell nomeCell" *ngIf="item.key !== 'id'">{{list[item.key]}}</div>
     </ng-container>
-    <div class="listCell excluirCell" (click)="delete(list)">
+    <div class="listCell excluirCell" (click)="delete(list)" *ngIf="acaoDeletar">
       <img src="../../../../assets/img/delete.png" alt="" srcset="">
     </div>
    </div>

@@ -45,23 +45,23 @@ export class InstitutoIndexComponent implements OnInit {
       this.institutoListfiltered = res;
     },
     err => {
-      console.log('err', err)
+      //console.log('err', err)
     })
   }
 
 
   serchFunction(searchTerms){
-    // console.log('searchTerms', searchTerms)
+    // //console.log('searchTerms', searchTerms)
     if(searchTerms.termo === ""){
       this.getInstitutoList()
     }else{
       this.service.getInstitutoFiltrado(searchTerms.termo, searchTerms.campo.toLowerCase()).subscribe(
         res => {
-          console.log('res', res)
+          //console.log('res', res)
           this.institutoListfiltered = res
         },
         err => {
-          console.log(err)
+          //console.log(err)
         }
       )
     }
@@ -95,7 +95,7 @@ export class InstitutoIndexComponent implements OnInit {
       this.getInstitutoList();
     },
     err => {
-      console.log('err', err);
+      //console.log('err', err);
     })
 
   }
@@ -103,11 +103,11 @@ export class InstitutoIndexComponent implements OnInit {
   removeInstituto(id:string){
     this.service.deleteInstituto(id).subscribe(
       res => {
-        console.log('res')
+        //console.log('res')
         this.getInstitutoList()
       },
       err => {
-        console.log("err", err)
+        //console.log("err", err)
       }
     )
     // this.institutoListfiltered = this.institutoList.filter(instituto => {

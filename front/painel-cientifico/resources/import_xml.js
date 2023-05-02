@@ -42,7 +42,7 @@ function pegarInfoPesquisador(codigo) {
                 "paginaInicial": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO']['@_PAGINA-INICIAL']),
                 "paginaFinal": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO']['@_PAGINA-FINAL'])
             }
-    
+
             pesquisas.push(novoArtigo)
         }
     }
@@ -61,7 +61,7 @@ function pegarInfoPesquisador(codigo) {
                 "paginaInicial": 0,
                 "paginaFinal": parseInt(livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO']['DETALHAMENTO-DO-LIVRO']['@_NUMERO-DE-PAGINAS'])
             }
-    
+
             pesquisas.push(novoLivro)
         }
     }
@@ -80,7 +80,7 @@ function pegarInfoPesquisador(codigo) {
                 "paginaInicial": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO']['@_PAGINA-INICIAL']),
                 "paginaFinal": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO']['@_PAGINA-FINAL'])
             }
-    
+
             pesquisas.push(novoCapitulo)
         }
     }
@@ -91,7 +91,7 @@ function pegarInfoPesquisador(codigo) {
         "pesquisas": pesquisas
     }
 
-    console.log(pesquisador)
+    //console.log(pesquisador)
 
     return pesquisador
 }

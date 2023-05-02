@@ -68,7 +68,7 @@ export class PesquisadorIndexComponent implements OnInit {
       this.institutoList = res;
     },
     err => {
-      console.log('err', err)
+      //console.log('err', err)
     })
   }
 
@@ -78,14 +78,22 @@ export class PesquisadorIndexComponent implements OnInit {
     let body = {
       'identificador_lattes':obj[0].lates,
       nome:obj[0].nome,
-      instituto:obj[1].nome
+      instituto:obj[1].nome,
+      // pesquisa:obj[0].pesquisas
     }
 
     this.service.addPesquisador(body).subscribe(res=>{
-      this.loadPesquisadores()
+      this.service.addPesquisas(obj[0].pesquisas).subscribe( sucesso => {
+        this.loadPesquisadores();
+      },
+      erro => {
+        console.log("erro", erro)
+      }
+      )
+
     },
     err => {
-      console.log("eer", err)
+      //console.log("eer", err)
     })
   }
 
@@ -120,7 +128,7 @@ export class PesquisadorIndexComponent implements OnInit {
 
   openCloseModal(){
     this.openModal = !this.openModal;
-    // console.log( 'open close modal', this.openModal)
+    // //console.log( 'open close modal', this.openModal)
     // this.acaoEmDestaque = 2;
   }
 
@@ -142,7 +150,7 @@ export class PesquisadorIndexComponent implements OnInit {
     //   return !pesquisador.nome.toUpperCase().includes(this.itemEmDestaque.nome.toUpperCase())
     // })
 
-    console.log( 'pesquisador para deletar', this.itemEmDestaque)
+    //console.log( 'pesquisador para deletar', this.itemEmDestaque)
 
     this.service.deletePesquisador(this.itemEmDestaque.id).subscribe(
       res => {
@@ -173,11 +181,11 @@ export class PesquisadorIndexComponent implements OnInit {
     }else{
       this.service.getPesquisadorFiltrado(searchTerms.termo, 'name').subscribe(
         res => {
-          console.log('res', res)
+          //console.log('res', res)
           this.pesquisadoresListfiltered = res
         },
         err => {
-          console.log(err)
+          //console.log(err)
         }
       )
     }

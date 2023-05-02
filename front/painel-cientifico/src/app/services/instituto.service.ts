@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { IInstituto } from '../models/instituto.models';
+import { IPesquisa } from '../models/pesquisas.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,26 @@ export class InstitutoService {
   addPesquisador(body:any): Observable<any>{
     const url = this.ENVIROMENT + 'researcher/';
     return this.httpClient.post<any>(url, body);
+  }
+
+  addPesquisas(body:any): Observable<IPesquisa[]>{
+    const url = this.ENVIROMENT + 'research/';
+    return this.httpClient.post<IPesquisa[]>(url, body);
+  }
+
+  pesquisasPorInstituto(body:any): Observable<IPesquisa[]>{
+    const url = this.ENVIROMENT + `research/report/${body.anoInicio}/${body.anoFim}/${body.instituto}`
+    return this.httpClient.get<IPesquisa[]>(url);
+  }
+
+  pesquisasPorPesquisador(body:any): Observable<IPesquisa[]>{
+    const url = this.ENVIROMENT + `research/report/${body.anoInicio}/${body.anoFim}/researcher/${body.pesquisador}`
+    return this.httpClient.get<IPesquisa[]>(url);
+  }
+
+  pesquisasPorAno(body:any): Observable<IPesquisa[]>{
+    const url = this.ENVIROMENT + `research/report/${body.anoInicio}/${body.anoFim}`
+    return this.httpClient.get<IPesquisa[]>(url);
   }
 
   getPesquisadores(): Observable<any[]>{
