@@ -61,7 +61,8 @@ export class PesquisadorModalAddComponent implements OnInit {
         parser = new xml2js.Parser(
           {
             trim: true,
-            explicitArray: true
+            explicitArray: true,
+            encoding:'ISO-8859-1'
           });
       parser.parseString(data, function (err, result) {
         // //console.log('result', result)

@@ -3,6 +3,7 @@ import { IInstituto } from 'src/app/models/instituto.models';
 import xml2js from 'xml2js';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { InstitutoService } from 'src/app/services/instituto.service';
+import { IPesquisador } from 'src/app/models/pesquisador.model';
 
 
 
@@ -101,7 +102,16 @@ export class PesquisadorIndexComponent implements OnInit {
     this.service.getPesquisadores().subscribe(
       res => {
         this.pesquisadoresList = res;
-        this.pesquisadoresListfiltered = res;
+        this.pesquisadoresListfiltered = res.map((pesquisador: IPesquisador) => {
+          let obj = {
+            id: pesquisador.id,
+            'identificador_lattes':pesquisador.identificador_lattes,
+            instituto:pesquisador.instituto,
+            nome: pesquisador.nome
+          }
+
+          return obj
+        });
       },
       err => {
         alert(err)
