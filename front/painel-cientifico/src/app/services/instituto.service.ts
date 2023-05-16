@@ -55,6 +55,11 @@ export class InstitutoService {
     return this.httpClient.post<IPesquisa[]>(url, body);
   }
 
+  getPesquisas(): Observable<IPesquisa[]>{
+    const url = this.ENVIROMENT + 'research/list';
+    return this.httpClient.get<IPesquisa[]>(url);
+  }
+
   pesquisasPorInstituto(body:any): Observable<IPesquisa[]>{
     const url = this.ENVIROMENT + `research/report/${body.anoInicio}/${body.anoFim}/${body.instituto}`
     return this.httpClient.get<IPesquisa[]>(url);

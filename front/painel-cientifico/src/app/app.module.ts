@@ -14,7 +14,10 @@ import { TableListComponent } from './components/shared/table-list/table-list.co
 import { ModalConfirmacaoComponent } from './components/shared/modal-confirmacao/modal-confirmacao.component';
 import { PesquisadorModalAddComponent } from './components/pesquisador/pesquisador-modal-add/pesquisador-modal-add.component';
 import { ProducoesIndexComponent } from './components/producaoes/producoes-index/producoes-index.component';
-import { ProducoesFiltroComponent } from './components/producaoes/producoes-filtro/producoes-filtro.component';
+import { ProducoesFiltroComponent } from './components/shared/producoes-filtro/producoes-filtro.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HomeIndexComponent } from './components/home/home-index/home-index.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes =  [
   {
@@ -24,9 +27,14 @@ const appRoutes: Routes =  [
   {
     path:'pesquisador',
     component:PesquisadorIndexComponent
-  },{
+  },
+  {
     path:'producoes',
     component:ProducoesIndexComponent
+  },
+  {
+    path:'home',
+    component:HomeIndexComponent
   }
 ]
 
@@ -43,12 +51,15 @@ const appRoutes: Routes =  [
     ModalConfirmacaoComponent,
     PesquisadorModalAddComponent,
     ProducoesIndexComponent,
-    ProducoesFiltroComponent
+    ProducoesFiltroComponent,
+    HomeIndexComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

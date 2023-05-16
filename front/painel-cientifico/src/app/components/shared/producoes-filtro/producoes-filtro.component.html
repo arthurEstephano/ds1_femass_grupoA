@@ -3,17 +3,17 @@
     <div class="areaCampoDatas">
 
       <label for="start">Ano início:</label>
-      <input type="number" id="ano" name="ano" min="1900" max="2099" (change)="changeSelectAno($event)">
+      <input [value]="this.anoInicio" type="number" id="ano" name="ano" min="1900" max="2099" (change)="changeSelectAno($event)">
 
     </div>
     <div class="areaCampoDatas">
 
       <label for="start">Ano fim:</label>
 
-      <input type="number" id="ano" name="ano" [min]="anoInicio" max="2099" (change)="changeSelectAnoFim($event)">
+      <input [value]="this.anoFim" type="number" id="ano" name="ano" [min]="anoInicio" max="2099" (change)="changeSelectAnoFim($event)">
 
     </div>
-    <button (click)="buscaPorAno()">BUSCAR</button>
+    <button (click)="buscaPorAno(true)">BUSCAR</button>
   </div>
   <div class="AreaTermos">
     <div class="campos">
@@ -35,7 +35,7 @@
       </div>
       <div class="selectArea">
         <select name="campo" id="campo" (change)="changeSelectProd($event)" [disabled]="disabledCampos">
-          <option value="Todos" selected disabled>Tipo Prod:</option>
+          <option value="Todos" selected disabled>{{this.tipoComunicacao != null ? this.tipoComunicacao :'Tipo Prod:'}}</option>
           <option value="Todos" >Todos</option>
           <option *ngFor="let item of tipoProducoes" value="{{item}}">{{item}}</option>
           <!-- <option value="acronimo">Artigos pub.</option> -->

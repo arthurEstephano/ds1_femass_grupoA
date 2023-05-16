@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IInstituto } from 'src/app/models/instituto.models';
 import { IPesquisador } from 'src/app/models/pesquisador.model';
 import { IPesquisa } from 'src/app/models/pesquisas.model';
+import { ComunicationService } from 'src/app/services/comunication.service';
 import { InstitutoService } from 'src/app/services/instituto.service';
 
 @Component({
@@ -26,16 +27,25 @@ export class ProducoesFiltroComponent implements OnInit {
   public lista : IPesquisa[]= []
   public listaEmitida : IPesquisa[]= []
   public tipoProd = 'Todos';
+  public tipoComunicacao;
 
   @Output() listaAtualizada = new EventEmitter();
 
 
 
-  constructor(private service: InstitutoService) { }
+  constructor(private service: InstitutoService, private comunication: ComunicationService) { }
 
   ngOnInit(): void {
     this.loadPesquisadores()
     this.getInstitutoList()
+    console.log('comunicação', this.comunication.getAno())
+    let anoComunicacao = this.comunication.getAno()
+    this.tipoComunicacao = this.comunication.getTipo();
+    if( anoComunicacao != null){
+      this.anoInicio = this.tipoComunicacao != null ? 0 : anoComunicacao as unknown as number
+      this.anoFim = anoComunicacao as unknown as number
+      this.buscaPorAno(false);
+    }
   }
 
   changeSelect(event?:any){
@@ -80,8 +90,8 @@ export class ProducoesFiltroComponent implements OnInit {
 
   }
 
-  changeSelectProd(event:any){
-    this.tipoProd = event.target.value;
+  changeSelectProd(event:any, value?:string){
+    this.tipoProd = value != null ? value :event.target.value;
 
     console.log("lista emitida", this.listaEmitida)
     if(this.selectField.toLocaleUpperCase() !== 'TODOS'){
@@ -126,10 +136,10 @@ export class ProducoesFiltroComponent implements OnInit {
     this.selectField = 'todos'
 
       let body = {
-      anoInicio: this.anoInicio,
-      anoFim: this.anoFim,
-      pesquisador: this.pesquisadorSelecionado.replace(/ /g, '%20')
-    }
+        anoInicio: this.anoInicio,
+        anoFim: this.anoFim,
+        pesquisador: this.pesquisadorSelecionado.replace(/ /g, '%20')
+      }
 
     if(this.pesquisadorSelecionado === 'todos'){
       if(this.tipoProd == 'Todos'){
@@ -191,7 +201,11 @@ export class ProducoesFiltroComponent implements OnInit {
     })
   }
 
-  buscaPorAno(){
+  buscaPorAno(cotroler:boolean){
+    if(cotroler){
+      this.comunication.setTipo(null);
+      this.tipoComunicacao = null;
+    }
     let body = {
       anoInicio: this.anoInicio,
       anoFim: this.anoFim
@@ -204,6 +218,10 @@ export class ProducoesFiltroComponent implements OnInit {
       let institutosPesquisa = []
       let pesquisadoresPesquisa = []
 
+      if(this.tipoComunicacao != null){
+        this.changeSelectProd(null, this.tipoComunicacao)
+      }
+
       res.forEach(item => {
         // institutosPesquisa.push(item.pesquisadores[0])
         pesquisadoresPesquisa.push(item.pesquisadores[0])
@@ -215,11 +233,12 @@ export class ProducoesFiltroComponent implements OnInit {
       }).map(pesquisador => {
         return pesquisador.instituto
       })
+      institutosPesquisa = x;
+
 
 
       // console.log('pesquisadores', x)
 
-      institutosPesquisa = x;
       // x.forEach(x => {
       //  institutosPesquisa.push(x.instituto)
       // });
@@ -238,7 +257,7 @@ export class ProducoesFiltroComponent implements OnInit {
       console.log('erro pesquisa por ano', err)
     })
 
-    console.log('body', body)
+    // console.log('body', body)
   }
 
   // buildTermos(nome:string){

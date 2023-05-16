@@ -1,0 +1,47 @@
+.mainPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.mainChartBar{
+  width: 50vw;
+  min-height: 40vh;
+  border: 1px solid white;
+  margin-bottom: 25px;
+}
+
+.cardsArea{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card{
+  height: 150px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 10px;
+  color: white;
+}
+
+.total{
+  font-size: 30px;
+  margin: auto;
+}
+
+.cardGrafo{
+  width: 130px;
+}
+
+.card > img{
+  width: 100%;
+}
+
+

@@ -1,4 +1,10 @@
 .mainPage {
   display: flex;
   justify-content: center;
+  padding-top: 20px;
+}
+
+.textoTotal{
+  margin-top: 50px;
+  color: #fff;
 }

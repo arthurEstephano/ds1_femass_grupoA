@@ -1,0 +1,47 @@
+<app-producoes-filtro
+  (listaAtualizada)="atualizarLista($event)"
+></app-producoes-filtro>
+
+<div class="mainPage">
+  <div class="mainChartBar" *ngIf="columnChartData.length > 0">
+    <!-- [view]="view" -->
+    <ngx-charts-bar-vertical
+        [results]="columnChartData"
+        [xAxis]="true"
+        [yAxis]="true"
+        (select)="onBarClick($event)"
+      >
+      </ngx-charts-bar-vertical>
+  </div>
+
+  <div class="cardsArea">
+    <div class="card">
+      <p>Total Produção</p>
+      <div class="chartPie">
+        <ngx-charts-pie-chart
+          [view]="viewPie"
+          [scheme]="colorScheme"
+          [results]="pieChartData"
+          (select)="onSliceClick($event)"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+    </div>
+    <div class="card">
+      <p>Institutos</p>
+      <p class="total">{{this.institutos.length}}</p>
+    </div>
+    <div class="card">
+      <p>Pesquisadores</p>
+      <p class="total">{{this.pesquisadores.length}}</p>
+    </div>
+    <div class="card cardGrafo">
+      <p>Grafos</p>
+      <img src="../../../../assets/img/graph.png" alt="icone grafico">
+    </div>
+  </div>
+
+
+</div>
+
+
