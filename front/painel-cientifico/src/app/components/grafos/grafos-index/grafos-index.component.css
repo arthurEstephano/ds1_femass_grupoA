@@ -1,0 +1,13 @@
+.mainPage{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+svg {
+  padding: 20px;
+  width: 50vw;
+  height: 50vh;
+}

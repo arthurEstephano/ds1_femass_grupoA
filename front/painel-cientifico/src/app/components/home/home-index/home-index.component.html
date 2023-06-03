@@ -3,16 +3,20 @@
 ></app-producoes-filtro>
 
 <div class="mainPage">
-  <div class="mainChartBar" *ngIf="columnChartData.length > 0">
+  <div class="mainChartBar" *ngIf="columnChartData.length > 0; else semDados">
     <!-- [view]="view" -->
     <ngx-charts-bar-vertical
         [results]="columnChartData"
         [xAxis]="true"
         [yAxis]="true"
         (select)="onBarClick($event)"
-      >
+        >
+        <!-- scheme="fire" -->
       </ngx-charts-bar-vertical>
   </div>
+  <ng-template #semDados>
+    <p class="semDados">Não existem dados que correspondam a pesquisa</p>
+  </ng-template>
 
   <div class="cardsArea">
     <div class="card">
@@ -27,11 +31,11 @@
         </ngx-charts-pie-chart>
       </div>
     </div>
-    <div class="card">
+    <div class="card" routerLink="/institutos">
       <p>Institutos</p>
       <p class="total">{{this.institutos.length}}</p>
     </div>
-    <div class="card">
+    <div class="card" routerLink="/pesquisador">
       <p>Pesquisadores</p>
       <p class="total">{{this.pesquisadores.length}}</p>
     </div>

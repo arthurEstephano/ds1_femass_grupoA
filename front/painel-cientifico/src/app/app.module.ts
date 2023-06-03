@@ -18,6 +18,7 @@ import { ProducoesFiltroComponent } from './components/shared/producoes-filtro/p
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HomeIndexComponent } from './components/home/home-index/home-index.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GrafosIndexComponent } from './components/grafos/grafos-index/grafos-index.component';
 
 const appRoutes: Routes =  [
   {
@@ -35,6 +36,10 @@ const appRoutes: Routes =  [
   {
     path:'home',
     component:HomeIndexComponent
+  },
+  {
+    path:'grafos',
+    component:GrafosIndexComponent
   }
 ]
 
@@ -52,14 +57,15 @@ const appRoutes: Routes =  [
     PesquisadorModalAddComponent,
     ProducoesIndexComponent,
     ProducoesFiltroComponent,
-    HomeIndexComponent
+    HomeIndexComponent,
+    GrafosIndexComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

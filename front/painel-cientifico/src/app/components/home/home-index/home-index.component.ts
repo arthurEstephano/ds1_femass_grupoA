@@ -10,6 +10,7 @@ import { InstitutoService } from 'src/app/services/instituto.service';
 })
 export class HomeIndexComponent implements OnInit {
   public pesquisas;
+  public pesquisasFiltradas;
   public tipoProducoes = ["Artigo Publicado","Livro Publicado","Capítulo de Livro"]
   public dadosGerais;
   colorScheme = 'cool';
@@ -25,6 +26,7 @@ export class HomeIndexComponent implements OnInit {
   ngOnInit(): void {
     this.service.getPesquisas().subscribe(res => {
       this.pesquisas = res;
+      this.pesquisasFiltradas = res;
       this.montarDadosChartPie()
       this.montarDadosCollunChart()
       this.getPesquisadores()
@@ -53,8 +55,9 @@ export class HomeIndexComponent implements OnInit {
 
 
   montarDadosCollunChart(){
+    this.columnChartData = []
     const categoriasPorAno = {};
-    this.pesquisas.forEach(pesquisa => {
+    this.pesquisasFiltradas.forEach(pesquisa => {
       const ano = pesquisa.ano;
       if (!categoriasPorAno[ano]) {
         categoriasPorAno[ano] = 1;
@@ -138,6 +141,8 @@ export class HomeIndexComponent implements OnInit {
   }
 
   atualizarLista(event){
+    this.pesquisasFiltradas = event;
+    this.montarDadosCollunChart();
     console.log('event', event)
   }
 

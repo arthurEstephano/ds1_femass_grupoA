@@ -29,7 +29,8 @@ export class AppComponent {
     home: true,
     institutos: false,
     pesquisador:false,
-    producao:false
+    producao:false,
+    grafos:false
   }
 
   selecionar(menu:string){

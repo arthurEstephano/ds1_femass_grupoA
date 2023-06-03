@@ -65,66 +65,79 @@ export class PesquisadorModalAddComponent implements OnInit {
             encoding:'ISO-8859-1'
           });
       parser.parseString(data, function (err, result) {
-        // //console.log('result', result)
+        console.log('result', result)
 
         //Carga de artigos
-        let artigos = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['ARTIGOS-PUBLICADOS'][0]['ARTIGO-PUBLICADO']
-        if(artigos != undefined){
-          if (!Array.isArray(artigos)) artigos = [artigos]
-          for (let i = 0; i < artigos.length; i++) {
-              let novoArtigo = {
-                  "tipo": "Artigo Publicado",
-                  "nome": artigos[i]['DADOS-BASICOS-DO-ARTIGO'][0]['$']['TITULO-DO-ARTIGO'],
-                  "ano": parseInt(artigos[i]['DADOS-BASICOS-DO-ARTIGO'][0]['$']['ANO-DO-ARTIGO']),
-                  "periodico": artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['TITULO-DO-PERIODICO-OU-REVISTA'],
-                  "volume": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['VOLUME']),
-                  "paginaInicial": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['PAGINA-INICIAL']),
-                  "paginaFinal": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['PAGINA-FINAL']),
-                  "pesquisadores":[result['CURRICULO-VITAE']['$']['NUMERO-IDENTIFICADOR']]
-              }
+        let artigos = null
+        if(result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA']){
 
-              pesquisas.push(novoArtigo)
+          if(result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['ARTIGOS-PUBLICADOS']){
+            artigos = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['ARTIGOS-PUBLICADOS'][0]['ARTIGO-PUBLICADO']
           }
-        }
-
-        //Carga de livros
-        let livros = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['LIVROS-E-CAPITULOS'][0]['LIVROS-PUBLICADOS-OU-ORGANIZADOS']
-        if(livros != undefined){
-            if (!Array.isArray(livros)) livros = [livros]
-            for (let i = 0; i < livros.length; i++) {
-                let novoLivro = {
-                    "tipo": "Livro Publicado",
-                    "nome": livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DADOS-BASICOS-DO-LIVRO'][0]['$']['TITULO-DO-LIVRO'],
-                    "ano": parseInt(livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DADOS-BASICOS-DO-LIVRO'][0]['$']['ANO']),
-                    "periodico": livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DETALHAMENTO-DO-LIVRO'][0]['$']['NOME-DA-EDITORA'],
-                    "volume": null,
-                    "paginaInicial": 0,
-                    "paginaFinal": parseInt(livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DETALHAMENTO-DO-LIVRO'][0]['$']['NUMERO-DE-PAGINAS']),
+          if(artigos != undefined){
+            if (!Array.isArray(artigos)) artigos = [artigos]
+            for (let i = 0; i < artigos.length; i++) {
+                let novoArtigo = {
+                    "tipo": "Artigo Publicado",
+                    "nome": artigos[i]['DADOS-BASICOS-DO-ARTIGO'][0]['$']['TITULO-DO-ARTIGO'],
+                    "ano": parseInt(artigos[i]['DADOS-BASICOS-DO-ARTIGO'][0]['$']['ANO-DO-ARTIGO']),
+                    "periodico": artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['TITULO-DO-PERIODICO-OU-REVISTA'],
+                    "volume": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['VOLUME']),
+                    "paginaInicial": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['PAGINA-INICIAL']),
+                    "paginaFinal": parseInt(artigos[i]['DETALHAMENTO-DO-ARTIGO'][0]['$']['PAGINA-FINAL']),
                     "pesquisadores":[result['CURRICULO-VITAE']['$']['NUMERO-IDENTIFICADOR']]
                 }
 
-                pesquisas.push(novoLivro)
+                pesquisas.push(novoArtigo)
             }
-        }
+          }
 
-        //Carga de capítulos
-        let capitulos = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['LIVROS-E-CAPITULOS'][0]['CAPITULOS-DE-LIVROS-PUBLICADOS'][0]['CAPITULO-DE-LIVRO-PUBLICADO']
-        if(capitulos != undefined){
-            if (!Array.isArray(capitulos)) capitulos = [capitulos]
-            for (let i = 0; i < capitulos.length; i++) {
-                let novoCapitulo = {
-                    "tipo": "Capítulo de Livro",
-                    "nome": capitulos[i]['DADOS-BASICOS-DO-CAPITULO'][0]['$']['TITULO-DO-CAPITULO-DO-LIVRO'],
-                    "ano": parseInt(capitulos[i]['DADOS-BASICOS-DO-CAPITULO'][0]['$']['ANO']),
-                    "periodico": capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['TITULO-DO-LIVRO'],
-                    "volume": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['NUMERO-DE-VOLUMES']),
-                    "paginaInicial": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['PAGINA-INICIAL']),
-                    "paginaFinal": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['PAGINA-FINAL']),
-                    "pesquisadores":[result['CURRICULO-VITAE']['$']['NUMERO-IDENTIFICADOR']]
-                }
+          //Carga de livros
+          let livros = null;
+          let capitulos = null;
+          if(result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['LIVROS-E-CAPITULOS']){
+            livros = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['LIVROS-E-CAPITULOS'][0]['LIVROS-PUBLICADOS-OU-ORGANIZADOS'];
 
-                pesquisas.push(novoCapitulo)
-            }
+            if(result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['LIVROS-E-CAPITULOS'][0]['CAPITULOS-DE-LIVROS-PUBLICADOS'])
+              capitulos = result['CURRICULO-VITAE']['PRODUCAO-BIBLIOGRAFICA'][0]['LIVROS-E-CAPITULOS'][0]['CAPITULOS-DE-LIVROS-PUBLICADOS'][0]['CAPITULO-DE-LIVRO-PUBLICADO']
+          }
+          if(livros != undefined){
+              if (!Array.isArray(livros)) livros = [livros]
+              for (let i = 0; i < livros.length; i++) {
+                  let novoLivro = {
+                      "tipo": "Livro Publicado",
+                      "nome": livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DADOS-BASICOS-DO-LIVRO'][0]['$']['TITULO-DO-LIVRO'],
+                      "ano": parseInt(livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DADOS-BASICOS-DO-LIVRO'][0]['$']['ANO']),
+                      "periodico": livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DETALHAMENTO-DO-LIVRO'][0]['$']['NOME-DA-EDITORA'],
+                      "volume": null,
+                      "paginaInicial": 0,
+                      "paginaFinal": parseInt(livros[i]['LIVRO-PUBLICADO-OU-ORGANIZADO'][0]['DETALHAMENTO-DO-LIVRO'][0]['$']['NUMERO-DE-PAGINAS']),
+                      "pesquisadores":[result['CURRICULO-VITAE']['$']['NUMERO-IDENTIFICADOR']]
+                  }
+
+                  pesquisas.push(novoLivro)
+              }
+          }
+
+          //Carga de capítulos
+
+          if(capitulos != undefined){
+              if (!Array.isArray(capitulos)) capitulos = [capitulos]
+              for (let i = 0; i < capitulos.length; i++) {
+                  let novoCapitulo = {
+                      "tipo": "Capítulo de Livro",
+                      "nome": capitulos[i]['DADOS-BASICOS-DO-CAPITULO'][0]['$']['TITULO-DO-CAPITULO-DO-LIVRO'],
+                      "ano": parseInt(capitulos[i]['DADOS-BASICOS-DO-CAPITULO'][0]['$']['ANO']),
+                      "periodico": capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['TITULO-DO-LIVRO'],
+                      "volume": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['NUMERO-DE-VOLUMES']),
+                      "paginaInicial": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['PAGINA-INICIAL']),
+                      "paginaFinal": parseInt(capitulos[i]['DETALHAMENTO-DO-CAPITULO'][0]['$']['PAGINA-FINAL']),
+                      "pesquisadores":[result['CURRICULO-VITAE']['$']['NUMERO-IDENTIFICADOR']]
+                  }
+
+                  pesquisas.push(novoCapitulo)
+              }
+          }
         }
 
         let resutado = {
