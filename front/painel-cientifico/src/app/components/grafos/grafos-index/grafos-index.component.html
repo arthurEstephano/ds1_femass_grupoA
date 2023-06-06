@@ -2,5 +2,8 @@
 <div class="mainPage">
 
   <svg #graphSvg></svg>
+  <div class="tooltip" [style.visibility]="tooltipVisible ? 'visible' : 'hidden'">
+    {{ tooltipText }}
+  </div>
 </div>
 

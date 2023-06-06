@@ -8,6 +8,35 @@
 
 svg {
   padding: 20px;
-  width: 50vw;
-  height: 50vh;
+  width: 70vw !important;
+  height: 80vh !important;
+  /* width: 50vw;
+  height: 50vh; */
+}
+
+.tooltip {
+  font-size: 12px;
+  background-color: #408CE6;
+  color: white;
+  pointer-events: none;
+  border: 1px solid red;
+  position: absolute;
+  top: 10vh;
+  right:5vw;
+  padding: 10px;
+  border: 1px solid #408CE6;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.node {
+  z-index: 2 !important;
+  cursor: pointer !important;
+}
+
+.link{
+  z-index: -1 !important;
 }

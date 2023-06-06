@@ -10,6 +10,8 @@ import { InstitutoService } from 'src/app/services/instituto.service';
 })
 export class HomeIndexComponent implements OnInit {
   public pesquisas;
+  public institutos  = []
+  public pesquisadores = []
   public pesquisasFiltradas;
   public tipoProducoes = ["Artigo Publicado","Livro Publicado","Capítulo de Livro"]
   public dadosGerais;
@@ -18,8 +20,6 @@ export class HomeIndexComponent implements OnInit {
   viewPie: [number, number] = [200, 150];
   public pieChartData;
   public columnChartData = [];
-  public institutos  = []
-  public pesquisadores = []
 
   constructor(private service: InstitutoService, private comunication: ComunicationService, private router: Router) { }
 
