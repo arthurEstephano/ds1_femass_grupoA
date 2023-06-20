@@ -1,6 +1,39 @@
 <!-- <div id="graph"></div> -->
-<div class="mainPage">
+<div class="selectArea">
+  <div class="selects">
+    <select name="campo" id="campo" (change)="changeSelectProd($event)">
+      <option value="Todos" selected disabled>{{this.tipoComunicacao != null ? this.tipoComunicacao :'Tipo Prod:'}}</option>
+      <option *ngFor="let item of tipoProducoes" value="{{item}}">{{item}}</option>
+      <!-- <option value="acronimo">Artigos pub.</option> -->
+    </select>
 
+    <select name="campo" id="campo" (change)="changeTipoDeVertice($event)">
+      <option value="Todos" selected disabled>{{this.tipoVertice != null ? this.tipoVertice :'Tipo de Vertice:'}}</option>
+      <option value="Pesquisador">Pesquisador</option>
+      <option value="Instituto">Instituto</option>
+      <!-- <option value="acronimo">Artigos pub.</option> -->
+    </select>
+
+    <!-- <select name="campo" id="campo" (change)="changeSelect($event)">
+      <option value="Todos" selected disabled>Institutos</option>
+      <option value="Todos" >Todos</option>
+      <option *ngFor="let item of institutos" value="{{item.nome}}">{{item.nome}}</option>
+    </select> -->
+
+  </div>
+
+  <div class="tooTipArea" *ngIf="tooTipsFiltros.length > 0">
+    <div class="tootipItem" *ngFor="let item of tooTipsFiltros">
+      <p>{{item}}</p>
+      <div class="buttonClose" (click)="removeTooTip(item)">X</div>
+    </div>
+    <!-- <div class="tootipItem" *ngFor="let item of tooTipsFiltrosInstitutos">
+      <p>{{item}}</p>
+      <div class="buttonClose" (click)="removeTooTipInstitutos(item)">X</div>
+    </div> -->
+  </div>
+</div>
+<div class="mainPage">
   <svg #graphSvg></svg>
   <div class="tooltip" [style.visibility]="tooltipVisible ? 'visible' : 'hidden'">
     {{ tooltipText }}

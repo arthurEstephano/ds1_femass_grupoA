@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { DataSet, Network } from 'vis';
 import * as d3 from 'd3';
+import { zoom } from 'd3-zoom';
 import { InstitutoService } from 'src/app/services/instituto.service';
-import { IPesquisadorPesquisa } from 'src/app/models/pesquisador.model';
+import { IPesquisador, IPesquisadorPesquisa } from 'src/app/models/pesquisador.model';
 
 
 @Component({
@@ -14,175 +15,84 @@ export class GrafosIndexComponent implements OnInit {
   @ViewChild('graphSvg', { static: true }) graphSvg: ElementRef<SVGElement>;
 
   public pesquisas;
+  public pesquisasFiltradas;
   public institutos  = []
+  public institutosFiltrados  = []
   public pesquisadores = []
+  public pesquisadoresFiltrados = []
   public dadosAssociados;
   tooltipVisible = true;
   tooltipText = '';
+  public tipoProducoes = ["Artigo Publicado","Livro Publicado","Capítulo de Livro"];
+  public tipoComunicacao = null;
+  public tipoVertice = null;
+  public tooTipsFiltros = [];
+  public tooTipsFiltrosInstitutos = [];
+  public initialWeightNode = {x: -6, y: -6, width: 12, height: 12};
+  public initialBoundingLink = {x: 0, y: 0, width: 0, height: 0};
+  public initialGraphWidth = 12
+  public initialGraphHeight = 12;
 
-  constructor(private service: InstitutoService) { }
+  constructor(private service: InstitutoService, private renderer: Renderer2) { }
 
   async ngOnInit(): Promise<void> {
     // await this.getPesquisas()
-    // this.getInstitutos()
-    await this.getPesquisadores()
+    this.getInstitutos()
+    this.getPesquisadores()
 
     // this.montarGrafo()
   }
 
-  montarGrafo(){
-    const svg = d3.select(this.graphSvg.nativeElement);
-    const margin = { top: 150, right: 20, bottom: 20, left: 200 };
-    const width = +svg.attr('width') + margin.left + margin.right;
-    const height = +svg.attr('height') + margin.top + margin.bottom;
+  changeSelectProd(event:any, value?:string){
+    // this.tipoComunicacao = value != null ? value :event.target.value;
+    if(this.tooTipsFiltros.length == 0) this.pesquisasFiltradas = [];
 
-    const data = {
-      nodes: [
-        { id: 'A' },
-        { id: 'B' },
-        { id: 'C' },
-        { id: 'D' },
-        { id: 'E' },
-        { id: 'F' },
-        // Adicione mais nós conforme necessário
-      ],
-      links: [
-        { source: 'A', target: 'B' },
-        { source: 'B', target: 'C' },
-        { source: 'C', target: 'D' },
-        { source: 'D', target: 'E' },
-        { source: 'E', target: 'F' },
-        // Adicione mais arestas conforme necessário
-      ]
-    };
+    console.log('pesquisas filtradas', this.pesquisasFiltradas)
+    let item = this.tooTipsFiltros.indexOf(event.target.value)
+    if(item == -1){
+      this.tooTipsFiltros.push(event.target.value)
+      this.adcionarPesquisas(event.target.value)
+    }
+    console.log('values', event.target.value)
 
-    const simulation = d3.forceSimulation()
-      .force('link', d3.forceLink().id((d: any) => d.id))
-      .force('charge', d3.forceManyBody())
-      .force('center', d3.forceCenter(width / 2, height / 2));
-
-    const link = svg.append('g')
-      .attr('class', 'links')
-      .selectAll('line')
-      .data(data.links)
-      .enter().append('line')
-      .attr('stroke', '#999')
-      .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', 2);
-
-    const node = svg.append('g')
-      .attr('class', 'nodes')
-      .selectAll('circle')
-      .data(data.nodes)
-      .enter().append('circle')
-      .attr('r', 8)
-      .attr('fill', '#red')
-      .on('click', this.handleClick); // Adicione o manipulador de eventos de clique
-
-
-    simulation.nodes(data.nodes).on('tick', () => {
-      link.attr('x1', (d: any) => d.source.x)
-        .attr('y1', (d: any) => d.source.y)
-        .attr('x2', (d: any) => d.target.x)
-        .attr('y2', (d: any) => d.target.y);
-
-      node.attr('cx', (d: any) => d.x)
-        .attr('cy', (d: any) => d.y);
-    });
-
-    simulation.force('link').links(data.links);
   }
 
-  montarGrafos(objetos) {
-    console.log('objetos', objetos);
-    const svg = d3.select(this.graphSvg.nativeElement);
-    const margin = { top: 150, right: 20, bottom: 20, left: 200 };
-    const width = +svg.attr('width') + margin.left + margin.right;
-    const height = +svg.attr('height') + margin.top + margin.bottom;
-
-    const data = {
-      nodes: [],
-      links: []
-    };
-
-    const institutoMap = new Map(); // Mapa para agrupar pesquisadores por instituto
-
-    // Verificar se objetos é um array ou objeto individual
-    const objetosArray = Array.isArray(objetos) ? objetos : [objetos];
-
-    objetosArray.forEach((objeto) => {
-      console.log('objeto forEach', objeto);
-      const instituto = objeto.instituto;
-      const pesquisadores = objeto.pesquisadores;
-
-      const institutoNode = { id: instituto };
-      data.nodes.push(institutoNode);
-
-      pesquisadores.forEach((pesquisador) => {
-        const pesquisadorNode = { id: pesquisador.nome, name: pesquisador.nome ,pesquisas: pesquisador.pesquisas };
-        data.nodes.push(pesquisadorNode);
-        data.links.push({ source: institutoNode.id, target: pesquisadorNode.id });
-      });
-    });
-
-    console.log('data', data)
-    const radius = Math.min(width, height) * 0.2; // Raio do layout radial
-    const centerX = width * 3;
-    const centerY = height * 3;
-
-    const simulation = d3.forceSimulation(data.nodes)
-      .force('link', d3.forceLink(data.links).id((d) => d.id).distance(200))
-      .force('charge', d3.forceManyBody().strength(-2000))
-      .force('center', d3.forceCenter(centerX, centerY))
-      .force('radial', d3.forceRadial(radius, centerX, centerY).strength(0.2))
-      .force('collide', d3.forceCollide(16)); // Ajuste o valor do raio de colisão conforme necessário
-
-    // Criar grupos para os nós e os links
-    const nodeGroup = svg.append('g').attr('class', 'node-group');
-    const linkGroup = svg.append('g').attr('class', 'link-group');
-
-    const link = linkGroup.selectAll('line')
-      .data(data.links)
-      .enter()
-      .append('line')
-      .attr('stroke', '#999')
-      .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', 2)
-      .style('z-index', -12);
-
-    const node = nodeGroup.selectAll('circle')
-      .data(data.nodes)
-      .enter()
-      .append('circle')
-      .style('z-index', 2)
-      .style('cursor', 'pointer')
-      .attr('r', (d) => (d.hasOwnProperty('pesquisas') ? 6 : 12))
-      .attr('fill', (d) => (d.hasOwnProperty('pesquisas') ? 'red' : 'blue')) // Diferenciar cor dos nós dos pesquisadores e dos institutos
-      .on('click', this.handleClick)
-      .on('mouseover', (event, d) => this.handleMouseOver(event, d)) // Atualizar para usar arrow function para manter o escopo correto
-      .on('mouseout', (event, d) => this.handleMouseOut(event, d)); // Atualizar para usar arrow function para manter o escopo correto
-
-
-    const linkScale = 0.5;
-
-    simulation.on('tick', () => {
-      link
-          .attr("x1", function(d) { return d.source.x * linkScale; })
-          .attr("y1", function(d) { return d.source.y * linkScale; })
-          .attr("x2", function(d) { return d.target.x * linkScale; })
-          .attr("y2", function(d) { return d.target.y * linkScale; });
-
-      node
-           .attr("cx", function (d) { return (d.x+6) * linkScale; })
-           .attr("cy", function(d) { return (d.y-6) * linkScale; });
-    });
-
-    simulation.force('link').links(data.links);
+  changeTipoDeVertice(event){
+    this.tipoVertice = event.target.value
+    console.log(this.tipoVertice)
+    this.associarPesquisas(this.tipoVertice)
   }
 
+  adcionarPesquisas(item){
+    let pesquisasF = this.pesquisas.filter( pesquisa => {
+      return pesquisa.tipo == item
+    })
+    console.log('this.pesquisas F', pesquisasF)
+    this.pesquisasFiltradas.push(...pesquisasF)
+    console.log('pesquisas filtradas', this.pesquisasFiltradas)
+    this.associarPesquisas()
+  }
 
+  removerPesquisas(item){
+    console.log('dentro de remover')
+    this.pesquisasFiltradas = this.pesquisasFiltradas.filter( pesquisa => {
+      return pesquisa.tipo != item
+    })
+    if(this.tooTipsFiltros.length < 1){
+      this.pesquisasFiltradas = this.pesquisas
+    }
+    console.log('pesquisas filtradas', this.pesquisasFiltradas)
+    this.associarPesquisas()
+  }
 
-  async getPesquisadores(){
+  removeTooTip(item){
+    this.tooTipsFiltros = this.tooTipsFiltros.filter(tooltip => {
+      return item != tooltip
+    })
+    this.removerPesquisas(item)
+  }
+
+  getPesquisadores(){
     this.service.getPesquisadores().subscribe(
       res => {
         console.log('pesquisadore', res)
@@ -194,13 +104,14 @@ export class GrafosIndexComponent implements OnInit {
     )
   }
 
-  async getPesquisas(){
+  getPesquisas(){
 
     this.service.getPesquisas().subscribe(res => {
       this.pesquisas = res;
+      this.pesquisasFiltradas = res;
       // this.categorizarPesquisas()
       this.associarPesquisas()
-
+      // this.montarGrafos(res)
       console.log('pesquisas', res)
     },
     err => {
@@ -238,8 +149,9 @@ export class GrafosIndexComponent implements OnInit {
     console.log('classificação', classificacao);
   }
 
-  associarPesquisas() {
-    const pesquisadoresMap = new Map();
+  associarPesquisas(tipo?:string) {
+    this.clear()
+    let pesquisadoresMap = new Map();
 
     // Criar um mapa com os pesquisadores
     this.pesquisadores.forEach(pesquisador => {
@@ -251,7 +163,7 @@ export class GrafosIndexComponent implements OnInit {
     });
 
     // Associar cada pesquisa ao pesquisador correspondente
-    this.pesquisas.forEach(pesquisa => {
+    this.pesquisasFiltradas.forEach(pesquisa => {
       pesquisa.pesquisadores.forEach(pesquisadorNome => {
         if (pesquisadoresMap.has(pesquisadorNome)) {
           const pesquisador = pesquisadoresMap.get(pesquisadorNome);
@@ -260,62 +172,251 @@ export class GrafosIndexComponent implements OnInit {
       });
     });
 
-    // Categorizar as pesquisas por instituto
-    const categorias = [];
-    pesquisadoresMap.forEach(pesquisador => {
-      const instituto = pesquisador.instituto;
-      if (!categorias[instituto]) {
-        categorias[instituto] = [];
+    console.log( 'pesquisadores.map', pesquisadoresMap)
+
+    const arrayAssociado = Array.from(pesquisadoresMap.values())
+    const agrupadosPorInstituto = arrayAssociado.reduce((agrupados, item) => {
+      const instituto = item.instituto;
+      if (!agrupados[instituto]) {
+        agrupados[instituto] = [];
       }
-      categorias[instituto].push(pesquisador);
+      agrupados[instituto].push(item);
+      return agrupados;
+    }, {});
+
+    // if(this.tipoVertice == 'Pesquisadore')
+    // this.montarGrafosPesquisadores(pesquisadoresMap)
+    console.log('dados por instituto', agrupadosPorInstituto)
+    this.tipoVertice != null && this.tipoVertice == 'Pesquisador' ? this.montarGrafosPesquisadores(pesquisadoresMap) : this.montarGrafos(agrupadosPorInstituto)
+
+  }
+
+  clear(){
+    let svgElement = this.graphSvg.nativeElement;
+
+    // Remover todos os filhos do elemento SVG
+    while (svgElement.firstChild) {
+      svgElement.removeChild(svgElement.firstChild);
+    }
+  }
+
+  montarGrafos(objetos) {
+    // console.log('grafo instituição')
+    let svg = d3.select(this.graphSvg.nativeElement);
+    svg.selectAll('*').remove();
+    svg.attr('width', this.initialGraphWidth)
+      .attr('height', this.initialGraphHeight);
+    svg.style('paint-order', 'stroke fill');
+    // console.log('svg width', svg.attr('width'))
+    const margin = { top: 150, right: 20, bottom: 20, left: 200 };
+    const width = +svg.attr('width') + margin.left + margin.right;
+    const height = +svg.attr('height') + margin.top + margin.bottom;
+
+    const data = {
+      nodes: [],
+      links: []
+    };
+
+    for(const key in objetos) {
+      // console.log('objeto for in', objetos[key])
+      objetos[key].forEach((objeto) => {
+        const instituto = objeto.instituto;
+        const pesquisas = objeto.pesquisas;
+
+        const pesquisadorNode = { id: instituto , name: instituto, pesquisas: pesquisas, tipo:'1' };
+        let filtered = data.nodes.find(node => {
+          // console.log('node id', node)
+          return node.id == pesquisadorNode.id
+        })
+        // console.log('filtered', filtered)
+        if(!filtered){
+          data.nodes.push(pesquisadorNode);
+        }
+
+        pesquisas.forEach((pesquisa) => {
+          const pesquisaNode = { id: pesquisa.nome, name: pesquisa.nome, instituto: instituto };
+          data.nodes.push(pesquisaNode);
+          // console.log('links',{ source: instituto, target: pesquisa.nome })
+          data.links.push({ source: instituto, target: pesquisa.nome });
+        });
+      })
+    }
+
+    const radius = Math.min(width, height) * 0.2;
+    const centerX = width * 5;
+    const centerY = height * 4;
+
+    const simulation = d3.forceSimulation(data.nodes)
+      .force('link', d3.forceLink(data.links).id((d) => d.id).distance(25))
+      .force('charge', d3.forceManyBody().strength(-350))
+      .force('center', d3.forceCenter(centerX, centerY))
+      .force('radial', d3.forceRadial(radius, centerX, centerY).strength(0.2))
+      .force('collide', d3.forceCollide(16));
+
+    const nodeGroup = svg.append('g').attr('class', 'node-group');
+    const linkGroup = svg.append('g').attr('class', 'link-group');
+
+    const link = linkGroup.selectAll('line')
+      .data(data.links)
+      .enter()
+      .append('line')
+      .attr('stroke', '#999')
+      .attr('stroke-opacity', 0.6)
+      .attr('stroke-width', 2)
+      .style('pointer-events', 'none');
+
+    // console.log('data', data)
+    const node = nodeGroup.selectAll('circle')
+      .data(data.nodes)
+      .enter()
+      .append('circle')
+      .style('z-index', 2)
+      .style('cursor', 'pointer')
+      .attr('r', (d) => (d.tipo !== '1' ? 3 : 6))
+      .attr('fill', (d) => (d.tipo === '1' ? 'red' : 'blue'))
+      .on('click', this.handleClick)
+      .on('mouseover', (event, d) => this.handleMouseOver(event, d))
+      .on('mouseout', (event, d) => this.handleMouseOut(event, d));
+
+    const linkScale = 0.5;
+    linkGroup.raise();
+
+    let graphWidth = this.initialGraphWidth
+    let graphHeight = this.initialGraphHeight
+    let nodeBoundingBox = nodeGroup.node().getBBox();
+    let linkBoundingBox = linkGroup.node().getBBox();
+    simulation.on('tick', () => {
+      nodeBoundingBox = nodeGroup.node().getBBox();
+      linkBoundingBox = linkGroup.node().getBBox();
+
+      graphWidth = nodeBoundingBox.width + linkBoundingBox.width;
+      graphHeight = nodeBoundingBox.height + linkBoundingBox.height;
+
+      if(this.tooTipsFiltros.includes("Livro Publicado")){
+        graphWidth = 2270.1;
+        graphHeight = 2270.1
+      }
+
+      svg.attr('width', graphWidth)
+         .attr('height', graphHeight);
+
+      link.attr('x1', (d) => (d.source.x - nodeBoundingBox.x) * linkScale)
+          .attr('y1', (d) => (d.source.y - nodeBoundingBox.y) * linkScale)
+          .attr('x2', (d) => (d.target.x - nodeBoundingBox.x) * linkScale)
+          .attr('y2', (d) => (d.target.y - nodeBoundingBox.y) * linkScale);
+
+      node.attr('cx', (d) => (d.x - nodeBoundingBox.x + 6) * linkScale)
+          .attr('cy', (d) => (d.y - nodeBoundingBox.y - 6) * linkScale);
     });
 
-    this.dadosAssociados = categorias;
-    console.log('pesquisadores x institutos x pesquisas', this.dadosAssociados)
-    let dadosParaGrafo = [];
-    // this.dadosAssociados.for(dados => {
-    //   this.montarGrafos(dados)
-    // });
-    for (const key in this.dadosAssociados) {
-      dadosParaGrafo.push(this.dadosAssociados[key])
-    }
-    console.log('dados para grafo', dadosParaGrafo)
 
-    const dadosAgrupados = [];
+    simulation.force('link').links(data.links);
+  }
 
-    const institutoMap = new Map(); // Mapa para agrupar pesquisadores por instituto
+  montarGrafosPesquisadores(objetos) {
+    console.log('grafo pesquisador')
+    // console.log('objetos grafos pesquisador', objetos);
+    let svg = d3.select(this.graphSvg.nativeElement);
 
-    dadosParaGrafo.forEach((objeto) => {
-      objeto.forEach(element => {
-        console.log("objeti", element)
+    svg.selectAll('*').remove();
+    svg.attr('width', this.initialGraphWidth)
+      .attr('height', this.initialGraphHeight);
+    svg.style('paint-order', 'stroke fill');
+    const margin = { top: 150, right: 20, bottom: 20, left: 200 };
+    const width = +svg.attr('width') + margin.left + margin.right;
+    const height = +svg.attr('height') + margin.top + margin.bottom;
 
-        const instituto = element.instituto;
-        const pesquisador = { nome: element.nome, pesquisas: element.pesquisas.length };
+    const data = {
+      nodes: [],
+      links: []
+    };
 
-        if (institutoMap.has(instituto)) {
-          institutoMap.get(instituto).push(pesquisador);
-        } else {
-          institutoMap.set(instituto, [pesquisador]);
-        }
+    objetos.forEach((objeto) => {
+      // console.log('objeto forEach', objeto);
+      const pesquisador = objeto.nome;
+      const pesquisas = objeto.pesquisas;
+
+      const pesquisadorNode = { id: pesquisador, name: pesquisador, pesquisas: pesquisas, tipo:'1' };
+      data.nodes.push(pesquisadorNode);
+
+      pesquisas.forEach((pesquisa) => {
+        const pesquisaNode = { id: pesquisa.nome, name: pesquisa.nome, pesquisas: pesquisa.pesquisadores };
+        data.nodes.push(pesquisaNode);
+        data.links.push({ source: pesquisadorNode.id, target: pesquisaNode.id });
       });
     });
 
-    institutoMap.forEach((pesquisadores, instituto) => {
-      const institutoData = {
-        instituto: instituto,
-        pesquisadores: pesquisadores
-      };
-      dadosAgrupados.push(institutoData);
+    // console.log('data', data);
+    let radius = Math.min(width, height) * 0.2;
+    let centerX = width * 7;
+    let centerY = height * 7;
+
+    let simulation = d3.forceSimulation(data.nodes)
+      .force('link', d3.forceLink(data.links).id((d) => d.id).distance(100))
+      .force('charge', d3.forceManyBody().strength(-500))
+      .force('center', d3.forceCenter(centerX, centerY))
+      .force('radial', d3.forceRadial(radius, centerX, centerY).strength(0.2))
+      .force('collide', d3.forceCollide(16));
+
+    let nodeGroup = svg.append('g').attr('class', 'node-group');
+    let linkGroup = svg.append('g').attr('class', 'link-group');
+
+    let link = linkGroup.selectAll('line')
+      .data(data.links)
+      .enter()
+      .append('line')
+      .attr('stroke', '#999')
+      .attr('stroke-opacity', 0.6)
+      .attr('stroke-width', 2)
+      .style('pointer-events', 'none');
+
+    // console.log('data', data.nodes)
+    let node = nodeGroup.selectAll('circle')
+      .data(data.nodes)
+      .enter()
+      .append('circle')
+      .style('z-index', 2)
+      .style('cursor', 'pointer')
+      .attr('r', (d) => (d.tipo !== '1' ? 3 : 6))
+      .attr('fill', (d) => (d.tipo === '1' ? 'red' : 'blue'))
+      .on('click', this.handleClick)
+      .on('mouseover', (event, d) => this.handleMouseOver(event, d))
+      .on('mouseout', (event, d) => this.handleMouseOut(event, d));
+
+    let linkScale = 0.5;
+    linkGroup.raise();
+    let graphWidth = this.initialGraphWidth
+    let graphHeight = this.initialGraphHeight
+    simulation.on('tick', () => {
+      let nodeBoundingBox = nodeGroup.node().getBBox();
+      let linkBoundingBox = linkGroup.node().getBBox();
+      // console.log('nodeBoundingBox', nodeBoundingBox)
+      // console.log('linkBoundingBox', linkBoundingBox)
+      graphWidth = nodeBoundingBox.width + linkBoundingBox.width;
+      graphHeight = nodeBoundingBox.height + linkBoundingBox.height;
+
+      if(this.tooTipsFiltros.includes("Livro Publicado")){
+        graphWidth = 2270.1;
+        graphHeight = 2270.1
+      }
+
+      svg.attr('width', graphWidth)
+         .attr('height', graphHeight);
+
+      link.attr('x1', (d) => (d.source.x - nodeBoundingBox.x) * linkScale)
+          .attr('y1', (d) => (d.source.y - nodeBoundingBox.y) * linkScale)
+          .attr('x2', (d) => (d.target.x - nodeBoundingBox.x) * linkScale)
+          .attr('y2', (d) => (d.target.y - nodeBoundingBox.y) * linkScale);
+
+      node.attr('cx', (d) => (d.x - nodeBoundingBox.x + 6) * linkScale)
+          .attr('cy', (d) => (d.y - nodeBoundingBox.y - 6) * linkScale);
     });
 
-    console.log('dados', dadosAgrupados)
-    this.montarGrafos(dadosAgrupados)
+    simulation.force('link').links(data.links);
   }
 
   handleMouseOver(event: any, d: any) {
-    // Exibir o nome do nó
-    console.log('d', d)
-    this.tooltipText = `${d.id} ${d.pesquisas ? '- ' + d.pesquisas + ' pesquisas' : ''}`;
+    this.tooltipText = `${d.id}`;
     this.tooltipVisible = true;
   }
 
@@ -330,11 +431,11 @@ export class GrafosIndexComponent implements OnInit {
   }
 
   categorizarPesquisas() {
-    const categorias = [];
+    let categorias = [];
 
-    this.pesquisas.forEach((pesquisa) => {
+    this.pesquisasFiltradas.forEach((pesquisa) => {
       pesquisa.pesquisadores.forEach((pesquisador) => {
-        const categoriaExistente = categorias.find((categoria) => categoria.pesquisador === pesquisador);
+        let categoriaExistente = categorias.find((categoria) => categoria.pesquisador === pesquisador);
         if (categoriaExistente) {
           categoriaExistente.pesquisas.push(pesquisa);
         } else {
@@ -346,7 +447,19 @@ export class GrafosIndexComponent implements OnInit {
       });
     });
 
-    console.log('categorias pesquisadores', categorias);
+    // console.log('categorias pesquisadores', categorias);
+  }
+
+  changeSelect(event){
+    console.log('item', event.target.value)
+    if(this.tooTipsFiltrosInstitutos.length == 0) this.pesquisasFiltradas = [];
+
+    console.log('pesquisas filtradas', this.pesquisasFiltradas)
+    let item = this.tooTipsFiltrosInstitutos.indexOf(event.target.value)
+    if(item == -1){
+      this.tooTipsFiltros.push(event.target.value)
+      this.associarPesquisas(event.target.value)
+    }
   }
 
 }
