@@ -1,0 +1,10 @@
+<div class="modalBackArea">
+  <div class="modal">
+    <p>{{textoConfirmacao}}</p>
+    <div class="buttonArea">
+      <button *ngIf="!alerta" class="cancelar" (click)="closeModal()">NÃO</button>
+      <button (click)="confirmacao()">{{alerta ? 'OK' : 'SIM'}}</button>
+    </div>
+  </div>
+</div>
+

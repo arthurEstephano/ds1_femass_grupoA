@@ -1,0 +1,19 @@
+
+<h4 class="title">INSTITUTOS</h4>
+<div class="list">
+   <div class="listHead listRow">
+    <div class="listCell nomeCell">Nome</div>
+    <div class="listCell acronimoCell">Acrônimo</div>
+   </div>
+   <div class="listRow listBody" *ngFor="let list of institutoList">
+    <div class="listCell nomeCell">{{list.nome}}</div>
+    <div class="listCell acronimoCell">{{list.acronimo}}</div>
+    <div class="listCell excluirCell" (click)="deleteInstituto(list.nome)">
+      <img src="../../../../assets/img/delete.png" alt="" srcset="">
+    </div>
+   </div>
+</div>
+
+<div class="addButon" (click)="openModalAdd()">
+  +
+</div>

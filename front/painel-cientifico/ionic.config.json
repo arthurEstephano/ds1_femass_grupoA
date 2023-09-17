@@ -1,0 +1,7 @@
+{
+  "name": "painel-cientifico",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

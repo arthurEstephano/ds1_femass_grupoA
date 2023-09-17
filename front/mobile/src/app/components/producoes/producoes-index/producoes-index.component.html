@@ -1,0 +1,22 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Produções</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="mainPage">
+  <p class="textoTotal" *ngIf="listaDePesquisa.length > 0">Total: {{listaDePesquisa.length}}</p>
+  <app-table-list
+  [tituloPagina]="'PRODUÇÕES CIENTIFICAS'"
+  [list]="listaDePesquisa"
+  [acaoDeletar]="false"
+  (openModal)="openCloseModal()"
+  (remove)="abrirConfirmacao($event)"
+  [habilitarAdd]="false"
+  >
+  </app-table-list>
+
+</div>

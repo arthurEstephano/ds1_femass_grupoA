@@ -1,0 +1,44 @@
+<!-- <app-filtro
+  [campos]="camposPesquisa"
+  (search)="serchFunction($event)"
+></app-filtro> -->
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>PESQUISADORES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<pre>{{openModalConfirmacao}}</pre>
+<div class="mainPage">
+  <app-table-list
+  [tituloPagina]="'PESQUISADORES'"
+  [list]="pesquisadoresListfiltered"
+  [acaoDeletar]="false"
+  (openModal)="openCloseModal()"
+  (remove)="abrirConfirmacao($event)"
+  (editarModal)="openCloseModal($event)"
+  >
+  </app-table-list>
+</div>
+
+<app-modal-confirmacao
+  *ngIf="openModalConfirmacao === true"
+  (close)="openModalConfirmacao = false"
+  (positivo)="acaoModalConfirmacao()"
+  [textoConfirmacao]="textoConfirmacao"
+  [alerta]="alerta"
+>
+</app-modal-confirmacao>
+
+<app-pesquisador-modal-add
+  [institutos]="institutoList"
+  [list]="listParaEdicao"
+  (close)="openCloseModal()"
+  (positivo)="confirmacaoModalAdd($event)"
+  (editar)="editarPesquisador($event)"
+  [editando]="true"
+  *ngIf="openModal === true"
+></app-pesquisador-modal-add>

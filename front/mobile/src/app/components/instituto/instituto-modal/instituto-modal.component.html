@@ -1,0 +1,34 @@
+<div class="modalBackArea">
+  <div class="modal">
+    <div class="fieldArea">
+      <!-- <span class="label">Nome:</span> -->
+      <input
+        type="text"
+        [value]="institutoParaEdicao !== null ? institutoParaEdicao.nome : '' " placeholder="UNIDADE..."
+        #nome>
+    </div>
+
+    <div class="fieldArea">
+      <!-- <span class="label">Acrônimo:</span> -->
+      <input
+        type="text"
+        placeholder="XPTO..."
+        [value]="institutoParaEdicao !== null ? institutoParaEdicao.acronimo : '' "
+        #acronimo>
+    </div>
+
+    <div class="buttonArea">
+      <button class="cancelar" (click)="closeModal()">CANCELAR</button>
+      <button (click)="buildTermos(nome.value, acronimo.value)">{{this.institutoParaEdicao !== null? 'EDITAR' : 'ADCIONAR'}}</button>
+    </div>
+  </div>
+</div>
+
+<app-modal-confirmacao
+  *ngIf="openModalAlert === true"
+  (close)="openModalAlert = false"
+  (positivo)="openModalAlert = false"
+  [textoConfirmacao]="'Nome e Acrônimo não podem estar em branco.'"
+  [alerta]="true"
+>
+</app-modal-confirmacao>

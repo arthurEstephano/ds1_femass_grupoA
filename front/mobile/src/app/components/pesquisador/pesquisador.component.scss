@@ -1,0 +1,17 @@
+.mainPage{
+  display: flex;
+  justify-content: center;
+  min-height: 57vh;
+  align-items: flex-start;
+  color: black;
+  background-color: white;
+  overflow: auto;
+
+  @media only screen and (max-width: 800px){
+    min-height: 100vh;
+    width: 100vw;
+    padding: 20px;
+  }
+}
+
+

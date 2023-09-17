@@ -1,0 +1,43 @@
+<!-- <app-instituto-search
+  (search)="serchFunction($event)"
+  ></app-instituto-search> -->
+<!-- <app-filtro
+  [campos]="camposPesquisa"
+  (search)="serchFunction($event)"
+></app-filtro> -->
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>INSTITUTOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+<div class="mainPage">
+  <app-table-list
+  [acaoDeletar]="false"
+  [tituloPagina]="'INSTITUTOS'"
+  [list]="institutoListfiltered"
+  (openModal)="abrirModal()"
+  (remove)="removeInstituto($event)"
+  (editarModal)="editarModal($event)"
+  >
+  </app-table-list>
+</div>
+
+<app-instituto-modal
+  *ngIf="openModal"
+  (add)="addInstituto($event)"
+  (close)="openModal = false"
+  [institutoParaEdicao]="institutoParaEdicao"
+  (editar)="editarInstituto($event)"
+></app-instituto-modal>
+
+<app-modal-confirmacao
+  *ngIf="openModalConfirmacao === true"
+  (close)="openModalConfirmacao = false"
+  (positivo)="openModalConfirmacao = false"
+  [textoConfirmacao]="'Instituto Editado com Sucesso!'"
+  [alerta]="true"
+>
+</app-modal-confirmacao>

@@ -1,0 +1,152 @@
+.list{
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  width: 90vw;
+  // color: white;
+  margin-bottom: 30px;
+
+  .container{
+    border-bottom: 3px solid #408CE6;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    .textArea{
+
+      .listRow{
+        p{
+          margin: 0;
+        }
+        .titulo {
+          margin-right: 10px !important;
+        }
+      }
+    }
+  }
+}
+
+
+.title{
+  font-size: 30px;
+  // color: white;
+  margin-bottom: 60px;
+  margin-top: 30px;
+}
+
+.listHead{
+  font-weight: 600;
+}
+
+.listHead > .listCell{
+  margin-right: 5px;
+  background: #408CE6;;
+  border: 1px solid #408CE6;;
+  border-radius: 5px 0px 0px 0px;
+  text-transform: uppercase;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+}
+
+.listRow{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.listBody{
+  text-transform: uppercase;
+}
+
+.listBody > .listCell{
+  border-bottom: 1px solid #ccc;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.nomeCell{
+  width: 20vw;
+  padding: 10px;
+  word-break: break-word;
+}
+
+.acronimoCell{
+  width: 17vw;
+  padding: 10px;
+}
+
+.excluirCell{
+  cursor: pointer;
+  display: flex;
+  width: 3vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.excluirCell > img{
+  width: 75%;
+}
+
+.addButon{
+  width: 40px;
+  height: 40px;
+  // color: white;
+  background-color: white;
+  border-radius: 50%;
+  position: fixed;
+  top: 22vh;
+  right: 10px;
+  cursor: pointer;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #408CE6;
+  filter: drop-shadow(0px 0px 2px #aeaeae);
+}
+
+
+@media only screen and (max-width: 800px){
+  .list{
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin-bottom: 20vh;
+    width: 90vw;
+    // margin-top: 15vh;
+  }
+
+  .listRow{
+    width: 100%;
+  }
+  .nomeCell{
+    width: 25vw;
+  }
+
+  .excluirCell{
+    width: 8vw;
+    img{
+      width: auto;
+    }
+  }
+
+  .addButon{
+    top: auto;
+    bottom: 10px;
+    color: white;
+  }
+}
+
+.containerBotoes{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

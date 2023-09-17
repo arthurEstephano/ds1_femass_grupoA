@@ -1,0 +1,40 @@
+
+<div class="list">
+  <!-- <h4 class="title">{{tituloPagina}}</h4>  -->
+  <div class="container" *ngFor="let list of list">
+    <div class="textArea">
+      <ng-container *ngFor="let item of list | keyvalue">
+        <div class="listRow" >
+          <p class="titulo" *ngIf="item.key !== 'id'" ><strong>{{item.key}}:</strong></p>
+          <p *ngIf="item.key !== 'id'" >{{item.value}}</p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="listCell excluirCell" (click)="editar(list)">
+      <img src="../../../assets/img/editar.png" alt="" srcset="">
+    </div>
+
+   </div>
+
+   <!-- <div class="listHead listRow">
+    <div class="listCell nomeCell" *ngFor="let item of headers">{{item}}</div>
+   </div> -->
+   <!-- <div class="listRow listBody" *ngFor="let list of list">
+    <ng-container *ngFor="let item of list | keyvalue">
+      <div class="listCell nomeCell" *ngIf="item.key !== 'id'">{{item.value}}</div>
+    </ng-container>
+    <div class="containerBotoes">
+      <div class="listCell excluirCell" (click)="delete(list)" *ngIf="acaoDeletar">
+        <img src="../../../assets/img/delete.png" alt="" srcset="">
+      </div>
+      <div class="listCell excluirCell" (click)="editar(list)">
+        <img src="../../../assets/img/editar.png" alt="" srcset="">
+      </div>
+    </div>
+   </div> -->
+
+</div>
+
+<div class="addButon" (click)="openModalAdd()" *ngIf="habilitarAdd">
+  +
+</div>

@@ -1,0 +1,123 @@
+.modalBackArea{
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.modal{
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #333;
+  // min-width: 320px;
+  padding: 24px;
+}
+
+.areaPesquisa {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.buttonArea {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+button{
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #408CE6;
+  color: white;
+}
+
+.cancelar{
+  color: white;
+  background-color: red;
+  border: none;
+}
+
+.areaFiltro{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.areaFiltro > p {
+  font-weight: 600;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+input, input:focus, input:valid{
+  width: 100% !important;
+  margin-bottom: 10px;
+}
+
+select{
+  cursor: pointer;
+  cursor: pointer;
+  appearance: none;
+  color: #fff;
+  padding: 5px;
+  background-color: #383838;
+  border: 1px solid #AEAEAE;
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+}
+
+option{
+  font-size: 14px;
+}
+
+.naoEncontrado {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: red;
+}
+
+@media only screen and (max-width: 800px){
+  button{
+    padding: 17px;
+  }
+
+  .buttonArea[_ngcontent-ng-c3917827005] {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cancelar{
+    margin-bottom: 16px;
+  }
+  .modal{
+    max-width: 90vw;
+  }
+
+  .naoEncontrado{
+    text-align: center;
+  }
+
+  input{
+    padding: 10px 0;
+  }
+
+  select{
+    padding: 10px 4px;
+  }
+}
+
+.inputPesquisar{
+  margin-bottom: 0 !important;
+}

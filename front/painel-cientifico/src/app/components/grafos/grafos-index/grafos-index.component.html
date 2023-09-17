@@ -19,18 +19,24 @@
       <option value="Todos" >Todos</option>
       <option *ngFor="let item of institutos" value="{{item.nome}}">{{item.nome}}</option>
     </select> -->
-
+    <select name="campo" id="campo" (change)="changeSelectPesquisador($event)">
+      <option value="Todos" selected disabled>Pesquisadores</option>
+      <option value="todos" >Todos</option>
+      <option *ngFor="let item of pesquisadores" value="{{item.nome}}">{{item.nome}}</option>
+      <!-- <option value="acronimo">Pesquisador 1</option> -->
+    </select>
   </div>
 
-  <div class="tooTipArea" *ngIf="tooTipsFiltros.length > 0">
-    <div class="tootipItem" *ngFor="let item of tooTipsFiltros">
+  <!-- <div class="tooTipArea" *ngIf="toolTipsFiltros.length > 0"> -->
+  <div class="tooTipArea">
+    <div class="tootipItem" *ngFor="let item of toolTipsFiltros">
       <p>{{item}}</p>
       <div class="buttonClose" (click)="removeTooTip(item)">X</div>
     </div>
-    <!-- <div class="tootipItem" *ngFor="let item of tooTipsFiltrosInstitutos">
+    <div class="tootipItem" *ngFor="let item of toolTipsFiltrosPesquisadores">
       <p>{{item}}</p>
-      <div class="buttonClose" (click)="removeTooTipInstitutos(item)">X</div>
-    </div> -->
+      <div class="buttonClose" (click)="removeToolTipPesquisadores(item)">X</div>
+    </div>
   </div>
 </div>
 <div class="mainPage">

@@ -1,0 +1,46 @@
+<div class="modalBackArea">
+  <div class="modal">
+    <!-- <span>Campo:</span> -->
+
+    <form [formGroup]="form">
+      <div class="areaPesquisa" *ngIf="list === null">
+        <input type="text" placeholder="Cod. Pesquisador" class="inputPesquisar" formControlName="codLates" >
+        <button (click)="pesquisar(codPesquisador)">Pesquisar</button>
+      </div>
+      <div class="naoEncontrado" *ngIf="pesquisadorNaoEncontrado && list === null" >
+        <p>{{"Pesquisador Lattes: '" + codPesquisador + "' não encontrado"}}</p>
+      </div>
+    </form>
+
+    <div class="areaFiltro" *ngIf="(xmlItems !== null && list === null)">
+      <p>{{xmlItems.nome}}</p>
+      <!-- <input type="text" placeholder="Pesquisar Instituto" #termText (keyup)="filtrar(termText.value)"> -->
+      <div class="selectArea" #selectArea>
+        <select name="campo" id="campo" (change)="changeSelect($event)">
+          <option value="todos" selected disabled>{{itemSelecionado}}</option>
+          <option *ngFor="let item of institutosFiltrados" value="{{item.id}}">{{item.nome.toUpperCase()}}</option>
+          <!-- <option value="acronimo">Acrônimo</option> -->
+        </select>
+      </div>
+    </div>
+    <form [formGroup]="form">
+
+      <div class="div" *ngIf="list !== null">
+        <input type="text" [value]="list.nome" placeholder="Pesquisar Instituto" #termText (keyup)="filtrar(termText.value)" formControlName="nome" [readonly]="true">
+        <div class="selectArea" #selectAreaEditada>
+          <select name="campo" id="campo" (change)="changeSelect($event)">
+            <option value="todos" selected disabled>{{itemSelecionado}}</option>
+            <option *ngFor="let item of institutosFiltrados" value="{{item.id}}">{{item.nome.toUpperCase()}}</option>
+            <!-- <option value="acronimo">Acrônimo</option> -->
+          </select>
+        </div>
+      </div>
+    </form>
+
+    <div class="buttonArea" [ngStyle]="{'flex-direction': editando ? 'column' :''}" >
+      <button [ngStyle]="{'width': editando ? '100%' :''}"  class="cancelar" (click)="closeModal()">CANCELAR</button>
+      <button [ngStyle]="{'width': editando ? '100%' :''}" (click)="confirmacao()">{{editando ? "EDITAR" : 'ADCIONAR'}}</button>
+    </div>
+  </div>
+</div>
+

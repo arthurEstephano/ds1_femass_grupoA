@@ -19,6 +19,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HomeIndexComponent } from './components/home/home-index/home-index.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GrafosIndexComponent } from './components/grafos/grafos-index/grafos-index.component';
+import { IonicModule } from '@ionic/angular';
 
 const appRoutes: Routes =  [
   {
@@ -66,6 +67,7 @@ const appRoutes: Routes =  [
     RouterModule.forRoot(appRoutes),
     NgxChartsModule,
     BrowserAnimationsModule,
+    IonicModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

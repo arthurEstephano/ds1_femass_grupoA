@@ -25,10 +25,10 @@ const MockInstitutos: IInstituto[] =[
   styleUrls: ['./instituto-index.component.css']
 })
 export class InstitutoIndexComponent implements OnInit {
-  // public institutoList: IInstituto[] = MockInstitutos;
-  // public institutoListfiltered: IInstituto[] = MockInstitutos;
-  public institutoList: IInstituto[] = [];
-  public institutoListfiltered: IInstituto[] = [];
+  public institutoList: IInstituto[] = MockInstitutos;
+  public institutoListfiltered: IInstituto[] = MockInstitutos;
+  // public institutoList: IInstituto[] = [];
+  // public institutoListfiltered: IInstituto[] = [];
   public openModal: boolean = false;
   public camposPesquisa = ['Nome','Acrônimo']
 
