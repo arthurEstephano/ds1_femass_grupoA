@@ -287,6 +287,55 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/responses/204InstituteDeleted"
+  /path/{id}:
+    put:
+      tags:
+        - Institute
+      summary: Atualiza um instituto
+      description: "Atualiza um instituto especificado"
+      operationId: "instituteUpdate"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateInstitute"
+      responses:
+        "200":
+          description: Dados do instituto atualizado a partir de um ID.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Instituto Atualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseInstituteList"
 components:
   schemas:
     ResponseInstituteList:
@@ -317,6 +366,22 @@ components:
           meta:
             $ref: "#/components/schemas/Meta"
     CreateInstitute:
+      type: object
+      required:
+        - nome
+        - acronimo
+      properties:
+        nome:
+          description: Nome do instituto.
+          type: string
+          maxLength: 100
+          example: Instituto de Matemática
+        acronimo:
+          description: Acronimo do instituto
+          type: number
+          maxLength: 100
+          example: XPTO
+    UpdateInstitute:
       type: object
       required:
         - nome
