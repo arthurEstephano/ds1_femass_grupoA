@@ -2,7 +2,6 @@ package ds1.grupo1.resumo_cientifico.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ds1.grupo1.resumo_cientifico.controller.request.InstitutoRs;
-import ds1.grupo1.resumo_cientifico.exception.ResourceNotFoundException;
 import ds1.grupo1.resumo_cientifico.model.Instituto;
 import ds1.grupo1.resumo_cientifico.repository.InstitutoRepository;
-import org.springframework.web.bind.annotation.PutMapping;
-
 
 @RestController
 @RequestMapping("/institute")
@@ -103,21 +99,4 @@ public class InstitutoController {
     public List<Instituto> getInstitutoByNomeOrAcronimo(@PathVariable("busca") String busca){
         return institutoRepository.findByNomeIgnoreCaseContainingOrAcronimoIgnoreCaseContaining(busca, busca);
     }
-
-    /**
-     * Realiza a atualização de um Instituto utilizando de seu id e passando como body seu acronimo e nome.
-     * @param id : id do instituto.
-     */
-    @PutMapping("update/{id}")
-    public ResponseEntity<Instituto> putInstitutoById(@PathVariable("id") Long id, @RequestBody Instituto detalhesInstituto) throws Exception {
-        Instituto institutoUpdate = institutoRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Instituto não existe com o id: " + id));
-
-        institutoUpdate.setAcronimo(detalhesInstituto.getAcronimo());
-        institutoUpdate.setNome(detalhesInstituto.getNome());
-
-        institutoRepository.save(institutoUpdate);
-
-            return ResponseEntity.ok(institutoUpdate);
-    }   
 }

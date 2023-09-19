@@ -48,12 +48,3 @@ GET  http://localhost:8080/institute/name/Anatomia HTTP/1.1
 
 ### Get - Obtenção de um nome e ou acronimo que contem a palavra específica - ../institute/lista/{busca}
 GET  http://localhost:8080/institute/name-acronym/ana HTTP/1.1
-
-### Put - Atualização do nome e acrônimo de um instituto.
-PUT http://localhost:8080/institute/update/1 HTTP/1.1
-content-type: application/json
-
-{
-    "nome": "Línguas e Letras",
-    "acronimo": "LINLE"
-}
