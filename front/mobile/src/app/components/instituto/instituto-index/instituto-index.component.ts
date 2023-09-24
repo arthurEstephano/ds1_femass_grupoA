@@ -64,9 +64,20 @@ export class InstitutoIndexComponent implements OnInit {
 
   editarInstituto(instituto:any){
     console.log('instituto editado', instituto)
-    this.institutoParaEdicao = null;
-    this.openModalConfirmacao = true;
-    this.openModal = false
+    let body = {
+      nome: instituto.nome,
+      acronimo: instituto.acronimo
+    }
+    this.service.editInstitutos(body, instituto.id).subscribe(res=>{
+      this.institutoParaEdicao = null;
+      this.openModalConfirmacao = true;
+      this.openModal = false
+      console.log('res', res)
+      this.getInstitutoList()
+    },
+    err => {
+      console.log('erro', err)
+    })
   }
 
   serchFunction(searchTerms:any){

@@ -10,7 +10,7 @@
         </div>
       </ng-container>
     </div>
-    <div class="listCell excluirCell" (click)="editar(list)">
+    <div class="listCell excluirCell" (click)="editar(list)" *ngIf="habilitarEditar">
       <img src="../../../assets/img/editar-branco.png" alt="" srcset="">
     </div>
 

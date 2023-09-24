@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<div class="mainPage"> 
+<div class="mainPage">
   <p class="textoTotal" *ngIf="listaDePesquisa.length > 0">Total: {{listaDePesquisa.length}}</p>
   <app-table-list
   [tituloPagina]="'PRODUÇÕES CIENTIFICAS'"
@@ -16,6 +16,7 @@
   (openModal)="openCloseModal()"
   (remove)="abrirConfirmacao($event)"
   [habilitarAdd]="false"
+  [habilitarEditar]="false"
   >
   </app-table-list>
 

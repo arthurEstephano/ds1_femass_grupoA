@@ -11,6 +11,7 @@ export class TableListComponent  implements OnInit, OnChanges {
   @Input() list: any[] = [];
   @Input() acaoDeletar: boolean= true;
   @Input() habilitarAdd: boolean= true;
+  @Input() habilitarEditar: boolean= true;
   @Output() openModal = new EventEmitter()
   @Output() remove = new EventEmitter()
   @Output() editarModal = new EventEmitter()

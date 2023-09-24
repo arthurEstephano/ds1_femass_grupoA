@@ -27,6 +27,11 @@ export class InstitutoService {
     return this.httpClient.post<IInstituto>(url, body);
   }
 
+  editInstitutos(body:any, id:any): Observable<any>{
+    const url = this.ENVIROMENT+'institute/update/'+ id
+    return this.httpClient.put<any>(url, body)
+  }
+
   getInstitutoFiltrado(body:any, tipo:string): Observable<IInstituto[]>{
     let tipos:any = {
       todos:'name-acronym/',
