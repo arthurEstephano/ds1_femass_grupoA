@@ -6,8 +6,8 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class ComunicationService {
   private valorSubject: BehaviorSubject<string> = new BehaviorSubject<string>('Valor inicial');
-  private ano : BehaviorSubject<string> = new BehaviorSubject<any>(null);
-  private tipo : BehaviorSubject<string> = new BehaviorSubject<any>(null);
+  private ano : BehaviorSubject<string|null> = new BehaviorSubject<any>(null);
+  private tipo : BehaviorSubject<string| null> = new BehaviorSubject<any>(null);
   constructor() { }
 
   getValorAtual(): string {
@@ -22,19 +22,19 @@ export class ComunicationService {
     return this.valorSubject.asObservable();
   }
 
-  getAno(): string{
+  getAno(): string | null{
     return this.ano.getValue()
   }
 
-  getTipo(): string{
+  getTipo(): string | null{
     return this.tipo.getValue()
   }
 
-  setAno(ano: string): void {
+  setAno(ano: string | null): void {
     this.ano.next(ano);
   }
 
-  setTipo(tipo: string): void {
+  setTipo(tipo: string | null): void {
     this.tipo.next(tipo);
   }
 }

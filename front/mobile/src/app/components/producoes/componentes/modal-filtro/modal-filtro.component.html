@@ -1,0 +1,52 @@
+<div class="">
+<!-- <div class="modalBackArea"> -->
+  <!-- <div class="modal"> -->
+  <div class="">
+    <div class="areaDatas">
+      <div class="areaCampoDatas">
+
+        <label for="start">Ano início:</label>
+        <input [value]="this.anoInicio" type="number" id="ano" name="ano" min="1900" max="2099" (change)="changeSelectAno($event)">
+
+      </div>
+      <div class="areaCampoDatas">
+
+        <label for="start">Ano fim:</label>
+
+        <input [value]="this.anoFim" type="number" id="ano" name="ano" [min]="anoInicio" max="2099" (change)="changeSelectAnoFim($event)">
+
+      </div>
+      <button (click)="buscaPorAno(true)">BUSCAR</button>
+    </div>
+    <div class="AreaTermos">
+      <div class="campos">
+        <div class="selectArea">
+          <select name="campo" id="campo" (change)="changeSelect($event)" [disabled]="disabledCampos">
+            <option value="Todos" selected disabled>Institutos</option>
+            <option value="Todos" >Todos</option>
+            <option *ngFor="let item of institutoListfiltered" value="{{item}}">{{item}}</option>
+            <!-- <option value="acronimo">Instituto 1</option> -->
+          </select>
+        </div>
+        <div class="selectArea">
+          <select name="campo" id="campo" (change)="changeSelectPesquisador($event)" [disabled]="disabledCampos">
+            <option value="Todos" selected disabled>Pesquisador</option>
+            <option value="todos" >Todos</option>
+            <option *ngFor="let item of pesquisadoresListfiltered" value="{{item}}">{{item}}</option>
+            <!-- <option value="acronimo">Pesquisador 1</option> -->
+          </select>
+        </div>
+        <div class="selectArea">
+          <select name="campo" id="campo" (change)="changeSelectProd($event)" [disabled]="disabledCampos">
+            <option value="Todos" selected disabled>{{this.tipoComunicacao !== null ? this.tipoComunicacao :'Tipo Prod:'}}</option>
+            <option value="Todos" >Todos</option>
+            <option *ngFor="let item of tipoProducoes" value="{{item}}">{{item}}</option>
+            <!-- <option value="acronimo">Artigos pub.</option> -->
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

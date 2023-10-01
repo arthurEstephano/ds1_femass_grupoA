@@ -13,7 +13,6 @@ export class ModalConfirmacaoComponent  implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('abriu modal confirmação', this.alerta)
   }
 
   closeModal(){

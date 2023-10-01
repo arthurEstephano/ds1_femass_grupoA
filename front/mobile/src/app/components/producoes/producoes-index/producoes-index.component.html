@@ -6,8 +6,8 @@
     <ion-title>Produções</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <div class="mainPage">
+  <modal-filtro (listaAtualizada)="atualizarLista($event)"></modal-filtro>
   <p class="textoTotal" *ngIf="listaDePesquisa.length > 0">Total: {{listaDePesquisa.length}}</p>
   <app-table-list
   [tituloPagina]="'PRODUÇÕES CIENTIFICAS'"
