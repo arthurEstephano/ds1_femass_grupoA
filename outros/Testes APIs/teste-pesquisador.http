@@ -39,3 +39,11 @@ DELETE  http://localhost:8080/researcher/3 HTTP/1.1
 
 ### Get 
 GET  http://localhost:8080/researcher/name/Y HTTP/1.1
+
+### Put - Atualização do instituto de um pesquisador via ID.
+PUT http://localhost:8080/researcher/update/1 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2
+}

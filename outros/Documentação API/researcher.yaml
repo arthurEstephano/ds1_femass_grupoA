@@ -195,6 +195,55 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/responses/204ResearcherDeleted"
+  /update/{id}:
+    put:
+      tags:
+        - Researcher
+      summary: Atualiza o instituto de um pesquisador.
+      description: "Atualiza um instituto especificado de um pesquisador especificado."
+      operationId: "researcherUpdate"
+      parameters:
+        - $ref: "#/components/parameters/cache-Control"
+        - $ref: "#/components/parameters/content-Type"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/pageSize"
+        - $ref: "#/components/parameters/id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateResearcher"
+      responses:
+        "200":
+          description: Dados do pesquisador atualizado a partir de um ID.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseResearcherList"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+        "406":
+          $ref: "#/components/responses/NotAcceptable"
+        "422":
+          $ref: "#/components/responses/UnprocessableEntity"
+        "429":
+          $ref: "#/components/responses/TooManyRequests"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        default:
+          description: Pesquisador Atualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseResearcherList"
 components:
   schemas:
     ResponseResearcherList:
@@ -250,6 +299,16 @@ components:
           type: string
           maxLength: 100
           example: Ciência e Tecnologia
+    UpdateResearcher:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          description: Id do Instituto.
+          type: number
+          maxLength: 99999
+          example: 1
     Links:
       type: object
       properties:
