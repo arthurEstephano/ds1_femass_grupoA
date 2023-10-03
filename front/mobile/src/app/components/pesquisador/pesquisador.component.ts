@@ -128,7 +128,15 @@ export class PesquisadorComponent  implements OnInit {
   loadPesquisadores(){
     this.service.getPesquisadores().subscribe(
       res => {
-        this.pesquisadoresList = res;
+        this.pesquisadoresList = res.sort((a , b) => {
+          if (a.nome < b.nome) {
+            return -1;
+          }
+          if (a.nome > b.nome) {
+              return 1;
+          }
+            return 0;
+        });
         this.pesquisadoresListfiltered = res.map((pesquisador: IPesquisador) => {
           let obj = {
             id: pesquisador.id,
@@ -218,10 +226,23 @@ export class PesquisadorComponent  implements OnInit {
     }else if(this.acaoEmDestaque == 2){
       this.addPesquisador(this.itemEmDestaque)
     }else if(this.acaoEmDestaque == 3){
-      //Add chamada ao endpoint aqui!
-      this.textoConfirmacao = `Pesquisador Editado com Sucesso!`
-      this.alerta = true
-      this.openModalConfirmacao = true;
+      //Add chamada ao endpoint aqui
+      console.log('item em destaque', this.itemEmDestaque)
+      let body = {
+        id:this.itemEmDestaque.instituto[0].id
+      }
+      this.service.editarPesquisador(body, this.itemEmDestaque.id).subscribe(
+        res => {
+          this.textoConfirmacao = `Pesquisador Editado com Sucesso!`
+          this.alerta = true
+          this.openModalConfirmacao = true;
+          this.loadPesquisadores()
+
+        },
+        err => {
+          console.log('erro', err)
+        }
+      )
     }
 
   }

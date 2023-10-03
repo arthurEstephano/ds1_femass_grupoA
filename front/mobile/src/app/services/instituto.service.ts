@@ -56,6 +56,12 @@ export class InstitutoService {
     return this.httpClient.post<any>(url, body);
   }
 
+  editarPesquisador(body:any, id: Number) : Observable<any>{
+    console.log('body', body)
+    const url = this.ENVIROMENT + 'researcher/update/' + id
+    return this.httpClient.put<any>(url, body);
+  }
+
   addPesquisas(body:any): Observable<IPesquisa[]>{
     const url = this.ENVIROMENT + 'research/';
     return this.httpClient.post<IPesquisa[]>(url, body);
