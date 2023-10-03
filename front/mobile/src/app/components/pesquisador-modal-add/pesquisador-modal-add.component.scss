@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 100000;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--ion-item-background, var(--ion-background-color, #fff));
   display: flex;
   flex-direction: row;
   align-items: center;

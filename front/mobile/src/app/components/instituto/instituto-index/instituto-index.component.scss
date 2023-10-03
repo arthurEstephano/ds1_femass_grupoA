@@ -5,5 +5,5 @@
   align-items: flex-start;
   padding-top: 2vh;
   overflow: auto;
-
+  background-color: var(--ion-item-background, var(--ion-background-color, #fff));
 }
