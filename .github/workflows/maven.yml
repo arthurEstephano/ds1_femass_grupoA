@@ -35,8 +35,18 @@ jobs:
     - name: Clean install maven
       working-directory: ./resumo_cientifico
       run: mvn clean install
-    - name: Test with Maven
-      run: mvn -B test --file pom.xml
     - name: Build with Maven
       working-directory: ./resumo_cientifico
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -DskipTests
+   # - name: Test with Maven
+   #   working-directory: ./resumo_cientifico
+   #   run: mvn -B test --file pom.xml
+    - name: Report
+    - uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: Maven Tests
+        working-directory: ./resumo_cientifico
+        path: target/surefire-reports/*.xml
+        reporter: java-junit
+        fail-on-error: true
