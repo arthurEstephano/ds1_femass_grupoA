@@ -41,8 +41,8 @@ jobs:
    # - name: Test with Maven
    #   working-directory: ./resumo_cientifico
    #   run: mvn -B test --file pom.xml
-    - name: Report
     - uses: dorny/test-reporter@v1
+    - name: Report
       if: always()
       with:
         name: Maven Tests
