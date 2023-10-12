@@ -6,6 +6,11 @@
 trigger:
 - develop
 
+pr:
+- main
+- qa
+
+
 pool:
   vmImage: ubuntu-latest
 
