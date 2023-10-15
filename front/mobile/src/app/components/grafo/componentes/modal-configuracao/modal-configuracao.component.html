@@ -1,0 +1,27 @@
+<div class="">
+  <!-- <div class="modalBackArea"> -->
+    <!-- <div class="modal"> -->
+    <div class="">
+      <div class="areaDatas">
+        <div class="areaCampoDatas">
+          <label for="start">Verde:</label>
+          <input [(ngModel)]="valoresVerde[0]"  type="number" id="verde" min="0" (change)="changeSelectValorVerde($event,  0)">
+          <input [(ngModel)]="valoresVerde[1]"  [min]="valoresVerde[0] + 1" type="number" id="verde" (change)="changeSelectValorVerde($event, 1)">
+        </div>
+        <div class="areaCampoDatas" >
+          <label for="start">Vermelho:</label>
+          <input [(ngModel)]="valoresVermelho[0]"  [min]="valoresVerde[1] + 1" type="number" id="verde" (change)="changeSelectValorVermelho($event, 0)">
+          <input [(ngModel)]="valoresVermelho[1]" [min]="valoresVermelho[0] + 1" type="number" id="verde" (change)="changeSelectValorVermelho($event, 1)">
+        </div>
+        <div class="areaCampoDatas">
+          <label for="start">Azul:</label>
+          <input [(ngModel)]="valoresAzul[0]"  [min]="valoresVermelho[1] + 1" type="number" id="azul" (change)="changeSelectValorAzul($event, 0)">
+          <input [(ngModel)]="valoresAzul[1]" [min]="valoresAzul[0] + 1" type="number" id="azul" (change)="changeSelectValorAzul($event, 1)">
+        </div>
+
+        <button (click)="aplicarFiltro()">Aplicar</button>
+      </div>
+
+
+    </div>
+  </div>

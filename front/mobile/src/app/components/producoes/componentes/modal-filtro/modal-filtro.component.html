@@ -29,7 +29,7 @@
           </select>
         </div>
         <div class="selectArea">
-          <select name="campo" id="campo" (change)="changeSelectPesquisador($event)" [disabled]="disabledCampos">
+          <select [(ngModel)]="pesquisadorSelecionado" name="campo" id="campo" (change)="changeSelectPesquisador($event)" [disabled]="disabledCampos">
             <option value="Todos" selected disabled>Pesquisador</option>
             <option value="todos" >Todos</option>
             <option *ngFor="let item of pesquisadoresListfiltered" value="{{item}}">{{item}}</option>
@@ -37,7 +37,7 @@
           </select>
         </div>
         <div class="selectArea">
-          <select name="campo" id="campo" (change)="changeSelectProd($event)" [disabled]="disabledCampos">
+          <select [(ngModel)]="producaoSelecionada" name="campo" id="campo" (change)="changeSelectProd($event)" [disabled]="disabledCampos">
             <option value="Todos" selected disabled>{{this.tipoComunicacao !== null ? this.tipoComunicacao :'Tipo Prod:'}}</option>
             <option value="Todos" >Todos</option>
             <option *ngFor="let item of tipoProducoes" value="{{item}}">{{item}}</option>

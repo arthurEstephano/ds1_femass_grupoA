@@ -1,0 +1,13 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Grafo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="mainPage">
+  <modal-filtro (listaAtualizada)="atualizarLista($event)"></modal-filtro>
+  <modal-configuracao></modal-configuracao>
+</div>

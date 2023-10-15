@@ -18,12 +18,14 @@ import { InstitutoSearchComponent } from './components/instituto/instituto-searc
 import { InstitutoModalComponent } from './components/instituto/instituto-modal/instituto-modal.component';
 import { ProducoesIndexComponent } from './components/producoes/producoes-index/producoes-index.component';
 import { ModalFiltroComponent } from './components/producoes/componentes/modal-filtro/modal-filtro.component';
+import { GrafoIndexComponent } from './components/grafo/grafo-index/grafo-index.component';
+import { ModalConfiguracaoComponent } from './components/grafo/componentes/modal-configuracao/modal-configuracao.component';
 
 @NgModule({
   declarations: [AppComponent, PesquisadorComponent, TableListComponent,PesquisadorModalAddComponent, ModalConfirmacaoComponent, InstitutoListComponent,
   InstitutoIndexComponent,
   InstitutoSearchComponent,
-  InstitutoModalComponent,ProducoesIndexComponent,ModalFiltroComponent],
+  InstitutoModalComponent,ProducoesIndexComponent,ModalFiltroComponent,GrafoIndexComponent,ModalConfiguracaoComponent ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

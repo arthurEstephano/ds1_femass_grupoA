@@ -83,6 +83,7 @@ export class ProducoesIndexComponent implements OnInit {
     })
 
     this.listaDePesquisa = listaAtualizada;
+
   }
 
   atualizarLista(lista:any){

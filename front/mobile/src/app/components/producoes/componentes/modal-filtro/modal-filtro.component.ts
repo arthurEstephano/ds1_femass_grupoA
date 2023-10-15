@@ -16,6 +16,7 @@ export class ModalFiltroComponent  implements OnInit {
   public pesquisadoresList: IPesquisador[] = [];
   public pesquisadoresListfiltered: IPesquisador[] | unknown[] = [];
   public pesquisadorSelecionado: string = 'Todos';
+  public producaoSelecionada: string = 'Todos';
   public institutoSelecionado!: string;
   public institutoList: IInstituto[] = [];
   public institutoListfiltered: IInstituto[] | unknown[] = [];
@@ -51,7 +52,8 @@ export class ModalFiltroComponent  implements OnInit {
   changeSelect(event?:any){
     if(event)
       this.selectField = event.target.value;
-    this.pesquisadorSelecionado = 'todos'
+      this.pesquisadorSelecionado = 'todos';
+      this.tipoComunicacao = null;
     let body = {
       anoInicio: this.anoInicio,
       anoFim: this.anoFim,

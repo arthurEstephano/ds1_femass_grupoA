@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PesquisadorComponent } from './components/pesquisador/pesquisador.component';
 import { InstitutoIndexComponent } from './components/instituto/instituto-index/instituto-index.component';
 import { ProducoesIndexComponent } from './components/producoes/producoes-index/producoes-index.component';
+import { GrafoIndexComponent } from './components/grafo/grafo-index/grafo-index.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path:'producoes',
     component:ProducoesIndexComponent
+  },
+  {
+    path:'grafos',
+    component:GrafoIndexComponent
   }
 ];
 

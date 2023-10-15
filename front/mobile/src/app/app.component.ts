@@ -9,6 +9,7 @@ export class AppComponent {
     { title: 'Pesquisadores', url: '/pesquisador', icon: 'people-circle' },
     { title: 'institutos', url: '/institutos', icon: 'home' },
     { title: 'Produções', url: '/producoes', icon: 'document' },
+    { title: 'grafos', url: '/grafos', icon: 'document' },
 
   ];
   public labels = ['Family'];
