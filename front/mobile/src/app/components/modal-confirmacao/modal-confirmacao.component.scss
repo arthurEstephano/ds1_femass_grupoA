@@ -13,7 +13,8 @@
 }
 
 .modal{
-  background: #fff;
+  background: var(--ion-item-background, var(--ion-background-color, #fff));
+  color: var(--ion-color-dark, var(--ion-color, #fff));
   border-radius: 8px;
   box-shadow: 0 2px 8px #333;
   // width: 320px;
