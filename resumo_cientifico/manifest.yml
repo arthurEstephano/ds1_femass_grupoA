@@ -16,7 +16,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: resumo_cientifico
-        image: acrfemass.azurecr.io/resumo_cientifico:1.0.0
+        image: acrfemass.azurecr.io/resumo_cientifico
         resources:
           requests:
             memory: 512Mi
