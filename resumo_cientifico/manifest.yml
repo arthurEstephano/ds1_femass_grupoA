@@ -32,8 +32,11 @@ kind: Service
 metadata:
   name: resumo_cientifico
 spec:
+  type: ClusterIP
   ports:
-    - port: 80
-      targetPort: 8080
+  - name: http
+    port: 8080
+    targetPort: 8080
   selector:
-    app: resumo_cientifico
+    app: product-service
+
