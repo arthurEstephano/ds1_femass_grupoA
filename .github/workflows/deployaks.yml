@@ -10,7 +10,7 @@ env:
   DEPLOYMENT_MANIFEST_PATH: "./resumo_cientifico/manifest.yml"
 
 on:
-  pull_request:
+  push:
     branches: 
       - main
       - qa
