@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resumo_cientifico
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resumo_cientifico
+  template:
+    metadata:
+      labels:
+        app: resumo_cientifico
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: resumo_cientifico
+        image: acrfemass.azurecr.io/resumo_cientifico:1.0.0
+        resources:
+          requests:
+            memory: 512Mi
+            cpu: 500m
+          limits:
+            memory: 1024Mi
+            cpu: 500m
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resumo_cientifico
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: resumo_cientifico
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resumo_cientifico
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: resumo_cientifico
