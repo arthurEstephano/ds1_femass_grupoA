@@ -7,7 +7,7 @@ env:
   CONTAINER_NAME: "resumo_cientifico"
   RESOURCE_GROUP: "arthur-femass"
   CLUSTER_NAME: "acr-arthur-femass"
-  DEPLOYMENT_MANIFEST_PATH: "./resumo_cientifico/manifest.yml"
+  DEPLOYMENT_MANIFEST_PATH: "manifest.yml"
 
 on:
   push:
@@ -94,5 +94,6 @@ jobs:
         with:
           action: deploy
           manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+          path: ./resumo_cientifico/
           images: |
             ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}    
