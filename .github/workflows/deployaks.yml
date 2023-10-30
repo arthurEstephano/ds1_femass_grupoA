@@ -4,7 +4,7 @@ env:
   JAVA_VERSION: '17'
   DISTRIBUTION: zulu
   AZURE_CONTAINER_REGISTRY: "acrfemass"
-  CONTAINER_NAME: "resumo_cientifico:1.0.0"
+  CONTAINER_NAME: "resumo_cientifico"
   RESOURCE_GROUP: "arthur-femass"
   CLUSTER_NAME: "acr-arthur-femass"
   DEPLOYMENT_MANIFEST_PATH: "./resumo_cientifico/manifest.yml"
