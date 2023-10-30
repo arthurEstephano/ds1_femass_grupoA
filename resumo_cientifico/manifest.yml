@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: resumo_cientifico
+  name: resumo-cientifico
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: resumo_cientifico
+      app: resumo-cientifico
   template:
     metadata:
       labels:
-        app: resumo_cientifico
+        app: resumo-cientifico
     spec:
       nodeSelector:
         "kubernetes.io/os": linux
       containers:
-      - name: resumo_cientifico
+      - name: resumo-cientifico
         image: acrfemass.azurecr.io/resumo_cientifico:latest
         resources:
           requests:
@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: resumo_cientifico
+  name: resumo-cientifico
 spec:
   type: ClusterIP
   ports:
@@ -38,5 +38,5 @@ spec:
     port: 53
     targetPort: 8080
   selector:
-    app: resumo_cientifico
+    app: resumo-cientifico
 
