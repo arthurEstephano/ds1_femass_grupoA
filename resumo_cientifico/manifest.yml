@@ -16,7 +16,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: resumo-cientifico
-        image: acrfemass.azurecr.io/resumo-cientifico:latest
+        image: acrfemass.azurecr.io/resumo-cientifico
         resources:
           requests:
             memory: 1024Mi
@@ -32,18 +32,9 @@ kind: Service
 metadata:
   name: resumo-cientifico
 spec:
-  ports:
-    - port: 8080
-  selector:
-    app: resumo-cientifico
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: resumo-cientifico
-spec:
   type: LoadBalancer
   ports:
   - port: 80
+    targetPort: 8080
   selector:
     app: resumo-cientifico
