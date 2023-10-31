@@ -89,6 +89,9 @@ jobs:
           admin: 'false'
           use-kubelogin: 'true'
 
+      - name: ACR login
+        run: az acr login
+        
       - name: Deploys application
         uses: Azure/k8s-deploy@v4
         with:
