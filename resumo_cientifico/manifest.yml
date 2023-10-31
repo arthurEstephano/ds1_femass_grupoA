@@ -16,7 +16,7 @@ spec:
         "kubernetes.io/os": linux
       containers:
       - name: resumo-cientifico
-        image: acrfemass.azurecr.io/resumo-cientifico
+        image: acrfemass.azurecr.io/resumo-cientifico:latest
         ports:
         - containerPort: 8080
 ---
