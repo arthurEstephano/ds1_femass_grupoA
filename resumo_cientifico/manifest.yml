@@ -19,11 +19,11 @@ spec:
         image: acrfemass.azurecr.io/resumo-cientifico:latest
         resources:
           requests:
-            memory: 512Mi
-            cpu: 500m
+            memory: 1024Mi
+            cpu: 1024Mi
           limits:
             memory: 1024Mi
-            cpu: 500m
+            cpu: 1024Mi
         ports:
         - containerPort: 8080
 ---
@@ -33,7 +33,17 @@ metadata:
   name: resumo-cientifico
 spec:
   ports:
-    - port: 80
-      targetPort: 8080
+    - port: 8080
+  selector:
+    app: resumo-cientifico
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: resumo-cientifico
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
   selector:
     app: resumo-cientifico
