@@ -19,11 +19,11 @@ spec:
         image: acrfemass.azurecr.io/resumo-cientifico
         resources:
           requests:
-            memory: 1024Mi
-            cpu: 1024Mi
+            memory: 128m
+            cpu: 128m
           limits:
-            memory: 1024Mi
-            cpu: 1024Mi
+            memory: 128m
+            cpu: 128m
         ports:
         - containerPort: 8080
 ---
