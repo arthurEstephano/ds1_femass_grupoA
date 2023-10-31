@@ -5,6 +5,7 @@ on:
       - main
       - develop
       - qa
+      - feature/**
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
