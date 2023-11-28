@@ -1,0 +1,16 @@
+ds1\grupo1\resumo_cientifico\controller\request\PesquisaRs.class
+ds1\grupo1\resumo_cientifico\controller\request\PesquisadorRs.class
+ds1\grupo1\resumo_cientifico\controller\InstitutoController.class
+ds1\grupo1\resumo_cientifico\controller\PesquisadorController.class
+ds1\grupo1\resumo_cientifico\exception\BadRequestException.class
+ds1\grupo1\resumo_cientifico\model\Pesquisa.class
+ds1\grupo1\resumo_cientifico\controller\request\InstitutoRs.class
+ds1\grupo1\resumo_cientifico\repository\PesquisadorRepository.class
+ds1\grupo1\resumo_cientifico\ResumoCientificoApplication.class
+ds1\grupo1\resumo_cientifico\exception\ResourceNotFoundException.class
+ds1\grupo1\resumo_cientifico\model\Instituto.class
+ds1\grupo1\resumo_cientifico\config\WebConfig.class
+ds1\grupo1\resumo_cientifico\model\Pesquisador.class
+ds1\grupo1\resumo_cientifico\repository\InstitutoRepository.class
+ds1\grupo1\resumo_cientifico\controller\PesquisaController.class
+ds1\grupo1\resumo_cientifico\repository\PesquisaRepository.class
